@@ -1,0 +1,62 @@
+/* cursor.css */
+
+/* Hide the default cursor */
+body {
+    cursor: none; /* Hides the default cursor */
+}
+
+/* Style for the main custom cursor element */
+.custom-cursor {
+    position: fixed; /* Stays in place relative to the viewport */
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Ensures the cursor doesn't interfere with clicks */
+    z-index: 9999; /* Always on top */
+    transform: translate(-50%, -50%); /* Centers the cursor on the mouse position */
+    transition: transform 0.1s ease-out; /* Smooth transition for cursor movement */
+    /* Basic styling for the main cursor element - can be an SVG, a dot, etc. */
+    width: 20px; /* Size of the main cursor */
+    height: 20px;
+    background-color: #fff; /* White main cursor */
+    border-radius: 50%; /* Make it a circle */
+    opacity: 0.8;
+}
+
+/* Style for the trailing elements */
+.cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998; /* Just below the main cursor */
+    transform: translate(-50%, -50%); /* Centers the trail elements */
+    background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+    border-radius: 50%;
+    opacity: 0; /* Initially hidden */
+    transition: transform 0.05s ease-out, opacity 0.5s ease-out, background-color 0.5s ease-out; /* Faster transform for trail */
+}
+
+/* Different sizes for the trail elements for a varied effect */
+.cursor-trail-1 {
+    width: 10px;
+    height: 10px;
+    transition-delay: 0.02s; /* Small delay for trailing effect */
+}
+
+.cursor-trail-2 {
+    width: 8px;
+    height: 8px;
+    transition-delay: 0.04s;
+}
+
+.cursor-trail-3 {
+    width: 6px;
+    height: 6px;
+    transition-delay: 0.06s;
+}
+
+.cursor-trail-4 {
+    width: 4px;
+    height: 4px;
+    transition-delay: 0.08s;
+}
