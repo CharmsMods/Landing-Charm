@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charm?</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000; /* Black background for the entire page by default */
+            color: #fff; /* White text */
+            overflow-x: hidden; /* Prevent horizontal scrollbars */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            min-height: 100vh; /* Ensure body takes full height for content */
+        }
+
+        /* Logo styling */
+        .site-logo {
+            position: absolute;
+            top: 1.5rem; /* Adjust as needed for spacing from top */
+            left: 1.5rem; /* Adjust as needed for spacing from left */
+            width: 200px; /* Small size, adjust as needed */
+            height: auto;
+            z-index: 20; /* Ensure it's above other elements */
+            opacity: 0.8; /* Slightly less opaque to blend */
+        }
+
+        /* New class for full-height, scrollable sections */
+        .section-container {
+            min-height: 100vh; /* Each section takes full viewport height */
+            display: flex;
+            flex-direction: column; /* For vertical centering of content */
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: relative; /* Ensures absolute children are relative to this section */
+        }
+
+        /* Apply background image only to the main-page-section */
+        .main-page-section {
+            background-size: cover; /* Cover the entire section */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+            transition: background-image 1s ease-in-out; /* Smooth transition for background image */
+        }
+
+        /* Apply background image only to the socials-page-section */
+        .socials-page-section {
+            background-size: cover; /* Cover the entire section */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+            transition: background-image 1s ease-in-out; /* Smooth transition for background image */
+        }
+
+        /* The main content wrapper, now inside .section-container */
+        .main-content-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%; /* Take full height of parent .section-container */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .friend-name {
+            position: absolute;
+            font-size: 0.9rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+            white-space: nowrap;
+            display: flex; /* Use flex to align name and potential description */
+            flex-direction: column; /* Stack name and description vertically */
+            align-items: center; /* Center text within its own div */
+            line-height: 1.2; /* Adjust line height for better spacing */
+            text-align: center; /* Center text if it wraps */
+
+            /* Animation properties for bouncing effect */
+            animation-name: float;
+            animation-duration: 6s; /* Base duration */
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        /* Define the floating animation */
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(0, -10px); } /* Move up */
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Apply different durations and delays for a more varied bounce */
+        .friend-name-1 { animation-duration: 5.8s; animation-delay: 0s; }
+        .friend-name-2 { animation-duration: 6.2s; animation-delay: 0.5s; }
+        .friend-name-3 { animation-duration: 5.5s; animation-delay: 1s; }
+        .friend-name-4 { animation-duration: 6s; animation-delay: 0.3s; }
+        .friend-name-5 { animation-duration: 5.7s; animation-delay: 0.8s; }
+        .friend-name-6 { animation-duration: 6.3s; animation-delay: 0.2s; }
+        .friend-name-7 { animation-duration: 5.9s; animation-delay: 1.2s; }
+        .friend-name-8 { animation-duration: 6.1s; animation-delay: 0.7s; }
+
+        .main-input-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-input {
+            background: none;
+            border: none;
+            border-bottom: 2px solid #fff;
+            color: #fff;
+            font-size: 4rem; /* Large font size for "Charm?" */
+            font-weight: 500;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            outline: none;
+            width: fit-content;
+            margin-bottom: 0.5rem;
+            min-width: 200px;
+        }
+        .main-input::placeholder {
+            color: #fff;
+            opacity: 0.7;
+        }
+        .secondary-text {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-align: center;
+            max-width: 300px;
+            line-height: 1.4;
+            opacity: 0.6;
+        }
+
+        /* Socials section styling */
+        .socials-section {
+            width: 100%;
+            max-width: 800px; /* This constrains the content *inside* the glass box */
+            text-align: center;
+            padding: 0; /* Padding handled by glassmorphism-rectangle now */
+            position: relative; /* Ensure content layers correctly over glass box */
+            z-index: 2; /* Ensure content is above glassmorphism rectangle */
+            display: flex; /* To center h2 and socials-links inside */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Take full height of its parent (section-container) */
+        }
+        .socials-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+        .socials-links {
+            display: flex;
+            flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+            justify-content: center;
+            gap: 1.5rem; /* Space between links */
+            margin-bottom: 2rem;
+        }
+        .socials-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border: 3px solid rgba(255, 255, 255, 0.3); /* This is the initial gray border */
+            border-radius: 9999px;
+            transition: all 0.4s ease-in-out;
+            white-space: nowrap;
+            position: relative;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        /* Rainbow border layer */
+        .socials-links a::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, 
+                #ff0000,
+                #ff8000,
+                #ffff00,
+                #80ff00,
+                #00ff00,
+                #00ff80,
+                #00ffff,
+                #0080ff,
+                #0000ff,
+                #8000ff,
+                #ff00ff,
+                #ff0080,
+                #ff0000
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            z-index: -1;
+        }
+
+        /* Inner black background to cover rainbow */
+        .socials-links a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 9999px;
+            background-color: #000;
+            z-index: -1;
+        }
+
+        .socials-links a:hover {
+            border-color: transparent; /* This hides the original gray border on hover */
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1),
+                        0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .socials-links a:hover::before {
+            opacity: 1; /* This makes the rainbow visible on hover */
+        }
+
+        /* Glassmorphism Rectangle */
+        .glassmorphism-rectangle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; /* Make it almost full width */
+            height: 80vh; /* Make it almost full height of the viewport */
+            padding: 4rem; /* Increase padding for internal spacing */
+            background: rgba(255, 255, 255, 0.1); /* White with 10% opacity */
+            border-radius: 15px; /* Rounded edges */
+            backdrop-filter: blur(30px); /* Blurry effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            z-index: 1; /* Below the content (h2 and buttons) */
+            box-sizing: border-box; /* Include padding in width/height calculation */
+        }
+
+
+        /* Responsive positioning for friend names (Much more spread out) */
+        @media (min-width: 1024px) { /* Larger screens */
+            .friend-name-1 { top: 2%; left: 8%; } /* KingBowserXD - top left corner */
+            .friend-name-2 { top: 5%; right: 5%; } /* WashedNinja - top right corner */
+            .friend-name-3 { top: 25%; left: 2%; } /* Jonath94K - mid-left */
+            .friend-name-4 { top: 15%; right: 25%; } /* ThePro255 - top right area */
+            .friend-name-5 { bottom: 8%; left: 12%; } /* Supernaut - bottom left */
+            .friend-name-6 { bottom: 3%; right: 8%; } /* EvanRunner - bottom right corner */
+            .friend-name-7 { top: 65%; left: 25%; } /* NYPD - lower left area */
+            .friend-name-8 { bottom: 25%; right: 15%; } /* Lisa061 - bottom right area */
+        }
+
+        @media (min-width: 640px) and (max-width: 1023px) { /* Tablets */
+            .friend-name {
+                font-size: 0.8rem;
+            }
+            .friend-name-1 { top: 3%; left: 3%; }
+            .friend-name-2 { top: 5%; right: 3%; }
+            .friend-name-3 { top: 22%; left: 1%; }
+            .friend-name-4 { top: 18%; right: 20%; }
+            .friend-name-5 { bottom: 12%; left: 8%; }
+            .friend-name-6 { bottom: 5%; right: 3%; }
+            .friend-name-7 { top: 55%; left: 18%; }
+            .friend-name-8 { bottom: 28%; right: 12%; }
+             .glassmorphism-rectangle {
+                padding: 3rem; /* Adjust padding for tablets */
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 639px) { /* Mobile devices */
+            .friend-name {
+                font-size: 0.7rem;
+            }
+            .friend-name-1 { top: 3%; left: 3%; }
+            .friend-name-2 { top: 8%; right: 3%; }
+            .friend-name-3 { top: 18%; left: 3%; }
+            .friend-name-4 { top: 15%; right: 25%; }
+            .friend-name-5 { bottom: 18%; left: 3%; }
+            .friend-name-6 { bottom: 8%; right: 3%; }
+            .friend-name-7 { top: 45%; left: 3%; }
+            .friend-name-8 { bottom: 28%; right: 15%; }
+            .main-input {
+                font-size: 2.5rem;
+            }
+            .secondary-text {
+                font-size: 0.6rem;
+            }
+            .socials-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+             .glassmorphism-rectangle {
+                width: 95%; /* Adjust for smaller screens */
+                height: 85vh; /* Adjust height for smaller screens */
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="logo.png" alt="Charm's Utopia Logo" class="site-logo">
+
+    <div class="section-container main-page-section">
+        <div class="main-content-wrapper">
+            <div class="friend-name friend-name-1">
+                KingBowserXD
+                </div>
+            <div class="friend-name friend-name-2">
+                WashedNinja
+                </div>
+            <div class="friend-name friend-name-3">
+                Jonath94K
+                </div>
+            <div class="friend-name friend-name-4">
+                ThePro255
+                </div>
+            <div class="friend-name friend-name-5">
+                Supernaut
+                </div>
+            <div class="friend-name friend-name-6">
+                EvanRunner
+                </div>
+            <div class="friend-name friend-name-7">
+                NYPD
+                </div>
+            <div class="friend-name friend-name-8">
+                Lisa061
+                </div>
+
+            <div class="main-input-container">
+                <input type="text" id="charmNameInput" class="main-input" placeholder="Charm?">
+                <p class="secondary-text">
+                    Pushing Revolution
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-container socials-page-section">
+        <div class="glassmorphism-rectangle"></div> <div class="socials-section">
+            <h2>Connect with Charm</h2>
+            <div class="socials-links">
+                <a href="https://discordapp.com/users/1198452446456983605" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-discord mr-2"></i>Discord
+                </a>
+                <a href="https://github.com/CharmsMods" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github mr-2"></i>GitHub
+                </a>
+                <a href="https://www.instagram.com/itsdarynnfr?igsh=MTAwMDBobjFxazlkYQ==" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram mr-2"></i>Instagram
+                </a>
+                <a href="https://www.snapchat.com/add/cloudsforever?share_id=NgTk92Bny3c&locale=en-US" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-snapchat-ghost mr-2"></i>Snapchat
+                </a>
+                <a href="https://charmsmods.github.io/Modding-Repository-V2-Official-/" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-code-branch mr-2"></i>Modding Repository
+                </a>
+                <a href="https://charmsmods.github.io/Charms-Main-Site/mainpage.html" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-globe mr-2"></i>Charms Main Site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameInput = document.getElementById('charmNameInput');
+
+            // Load top background image on the main-page-section
+            const mainPageSection = document.querySelector('.main-page-section');
+            const topBackgroundImage = new Image();
+            topBackgroundImage.src = 'top-background.png';
+            topBackgroundImage.onload = function() {
+                mainPageSection.style.backgroundImage = `url('${topBackgroundImage.src}')`;
+            };
+
+            // Load bottom background image on the socials-page-section
+            const socialsPageSection = document.querySelector('.socials-page-section');
+            const bottomBackgroundImage = new Image();
+            bottomBackgroundImage.src = 'bottom-background.png';
+            bottomBackgroundImage.onload = function() {
+                socialsPageSection.style.backgroundImage = `url('${bottomBackgroundImage.src}')`;
+            };
+        });
+    </script>
+</body>
+</html>
