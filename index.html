@@ -56,6 +56,14 @@
             transition: background-image 1s ease-in-out; /* Smooth transition for background image */
         }
 
+        /* New: Gallery section background styling */
+        .gallery-page-section {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out;
+        }
+
         /* The main content wrapper, now inside .section-container */
         .main-content-wrapper {
             position: relative;
@@ -254,6 +262,81 @@
             box-sizing: border-box; /* Include padding in width/height calculation */
         }
 
+        /* New: Gallery section styling (Now for buttons) */
+        .gallery-section {
+            width: 100%;
+            max-width: 800px; /* Max width for the button container */
+            padding: 2rem 1rem;
+            text-align: center;
+            z-index: 2;
+        }
+        .gallery-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            color: #fff;
+        }
+        .gallery-buttons-grid {
+            display: flex; /* Use flexbox for button layout */
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 1.5rem; /* Space between buttons */
+            justify-content: center;
+            align-items: center; /* Center buttons horizontally */
+        }
+        .creation-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%; /* Take full width of its container */
+            max-width: 600px; /* Limit max width for readability */
+            padding: 1.5rem 2rem;
+            background-color: #333; /* Darker background for buttons */
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent; /* Initial transparent border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Initial subtle shadow */
+        }
+
+        /* Hover effect for creation buttons */
+        .creation-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%; /* Start off-screen to the left */
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth and strong transition */
+            z-index: 0;
+        }
+
+        .creation-button:hover::before {
+            left: 100%; /* Slide across to the right */
+        }
+
+        .creation-button:hover {
+            background-color: #555; /* Slightly lighter on hover */
+            transform: translateY(-5px) scale(1.02); /* Lift and slightly enlarge */
+            border-color: #00ccff; /* Blue border on hover */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 204, 255, 0.4); /* Enhanced shadow with glow */
+        }
+
+        .creation-button span {
+            position: relative; /* Ensure text is above pseudo-element */
+            z-index: 1;
+        }
+
+        .creation-button i {
+            margin-right: 0.8rem; /* Space for icon */
+            position: relative;
+            z-index: 1;
+        }
 
         /* Responsive positioning for friend names (Much more spread out) */
         @media (min-width: 1024px) { /* Larger screens */
@@ -283,6 +366,10 @@
                 padding: 3rem; /* Adjust padding for tablets */
                 width: 90%;
             }
+            .creation-button {
+                font-size: 1.3rem;
+                padding: 1.2rem 1.5rem;
+            }
         }
 
         @media (max-width: 639px) { /* Mobile devices */
@@ -311,6 +398,13 @@
                 width: 95%; /* Adjust for smaller screens */
                 height: 85vh; /* Adjust height for smaller screens */
                 padding: 1.5rem;
+            }
+            .gallery-section h2 {
+                font-size: 1.5rem;
+            }
+            .creation-button {
+                font-size: 1.1rem;
+                padding: 1rem 1.2rem;
             }
         }
     </style>
@@ -354,6 +448,22 @@
         </div>
     </div>
 
+    <div class="section-container gallery-page-section">
+        <div class="gallery-section">
+            <h2>Creations</h2>
+            <div class="gallery-buttons-grid">
+                <a href="https://charmsmods.github.io/Modding-Repository-V2-Official-/" class="creation-button" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Modding Repository</span>
+                </a>
+
+                <a href="https://charmsmods.github.io/Charms-Main-Site/mainpage.html" class="creation-button" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-globe"></i>
+                    <span>Charms Main Site</span>
+                </a>
+            </div>
+        </div>
+    </div>
     <div class="section-container socials-page-section">
         <div class="glassmorphism-rectangle"></div> <div class="socials-section">
             <h2>Connect with Charm</h2>
@@ -369,12 +479,6 @@
                 </a>
                 <a href="https://www.snapchat.com/add/cloudsforever?share_id=NgTk92Bny3c&locale=en-US" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-snapchat-ghost mr-2"></i>Snapchat
-                </a>
-                <a href="https://charmsmods.github.io/Modding-Repository-V2-Official-/" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-code-branch mr-2"></i>Modding Repository
-                </a>
-                <a href="https://charmsmods.github.io/Charms-Main-Site/mainpage.html" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-globe mr-2"></i>Charms Main Site
                 </a>
             </div>
         </div>
@@ -398,6 +502,14 @@
             bottomBackgroundImage.src = 'bottom-background.png';
             bottomBackgroundImage.onload = function() {
                 socialsPageSection.style.backgroundImage = `url('${bottomBackgroundImage.src}')`;
+            };
+
+            // NEW: Load gallery section background image
+            const galleryPageSection = document.querySelector('.gallery-page-section');
+            const galleryBackgroundImage = new Image();
+            galleryBackgroundImage.src = 'gallery-background.png'; // Make sure you have this image
+            galleryBackgroundImage.onload = function() {
+                galleryPageSection.style.backgroundImage = `url('${galleryBackgroundImage.src}')`;
             };
         });
     </script>
