@@ -64,8 +64,7 @@ html {
 
 .section-container:nth-child(2) { animation-delay: 0.2s; }
 .section-container:nth-child(3) { animation-delay: 0.4s; }
-.section-container:nth-child(4) { animation-delay: 0.6s; }
-.section-container:nth-child(5) { animation-delay: 0.8s; }
+/* Removed .section-container:nth-child(4) and (5) as only 3 sections remain */
 
 /* Parallax background effects */
 .main-page-section {
@@ -92,16 +91,7 @@ html {
     transition: background-image 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Background color overlays that slide over parallax images */
-.impact-page-section {
-    background: linear-gradient(135deg, #00ffff, #0099cc);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-}
+/* Removed .impact-page-section styles */
 
 .main-content-wrapper {
     position: relative;
@@ -240,6 +230,39 @@ html {
 @keyframes textFadeIn {
     to { opacity: 0.6; }
 }
+
+/* About button style */
+.about-button {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: aboutButtonEntrance 1s ease-out 2s forwards;
+}
+
+@keyframes aboutButtonEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
 
 /* Enhanced socials section */
 .socials-section {
@@ -505,69 +528,7 @@ html {
     transform: scale(1.2) rotate(5deg);
 }
 
-/* Enhanced impact section */
-.impact-text-container {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 12vw, 10rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 0.8;
-    white-space: nowrap;
-    position: relative;
-    color: #fff;
-    text-align: center;
-    z-index: 2;
-    padding: 0 1rem;
-    opacity: 0;
-    transform: scale(0.8);
-    animation: impactEntrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
-}
-
-@keyframes impactEntrance {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.impact-line {
-    display: block;
-    position: relative;
-    color: #fff;
-    padding-bottom: 0.1em;
-    opacity: 0;
-    transform: translateX(-100px);
-    animation: lineSlideIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-.impact-line:nth-child(1) { animation-delay: 1s; }
-.impact-line:nth-child(2) { animation-delay: 1.3s; }
-
-@keyframes lineSlideIn {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.impact-line.black-text {
-    color: #000;
-}
-
-.impact-line:hover {
-    transform: scale(1.05);
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-    transition: all 0.3s ease;
-}
-
-.impact-shadow {
-    position: absolute;
-    color: rgba(0, 0, 0, 0.2);
-    z-index: -1;
-    text-shadow: none;
-    filter: blur(3px);
-    transform: translate(20px, 20px);
-}
+/* Removed enhanced impact section styles */
 
 /* Responsive positioning for friend names */
 @media (min-width: 1024px) {
@@ -639,14 +600,6 @@ html {
     .creation-button {
         font-size: 1.1rem;
         padding: 1rem 1.2rem;
-    }
-    .impact-text-container {
-        font-size: clamp(1.5rem, 8vw, 4rem);
-        line-height: 0.9;
-    }
-    .impact-shadow {
-        transform: translate(10px, 10px);
-        filter: blur(1px);
     }
 }
 

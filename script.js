@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     elementsForScramble.forEach(el => {
         // --- Exclusion Logic ---
-        if (el.id === 'charmNameInput' || el.classList.contains('secondary-text') || el.classList.contains('site-logo')) {
+        if (el.id === 'charmNameInput' || el.classList.contains('secondary-text') || el.classList.contains('site-logo') || el.classList.contains('about-button')) {
             return;
         }
         if (el.textContent.trim().length === 0 || (el.children.length === 1 && el.querySelector('i') && el.textContent.trim().length < 2)) {
@@ -134,23 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         let targetElement = el;
-        // Special handling for "Pushing Revolution" impact text
-        if (el.classList.contains('impact-line')) {
-            const directTextNode = Array.from(el.childNodes).find(node =>
-                node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0
-            );
-
-            if (directTextNode) {
-                targetElement = directTextNode;
-            } else {
-                const nonShadowSpan = el.querySelector('span:not(.impact-shadow)');
-                if (nonShadowSpan && nonShadowSpan.textContent.trim().length > 0) {
-                    targetElement = nonShadowSpan;
-                } else {
-                    return; // No valid text content found
-                }
-            }
-        }
+        // Special handling for "Pushing Revolution" impact text - REMOVED, no longer needed
+        // as the impact section is removed.
 
         const scrambler = new TextScramble(targetElement);
         scramblers.push(scrambler); // Add to the list of scramblers
