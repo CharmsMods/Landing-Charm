@@ -1,5 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('charmNameInput');
+    
+    // Handle friend name clicks
+    document.querySelectorAll('.friend-name').forEach(friend => {
+        friend.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = friend.getAttribute('data-url');
+            if (url && url !== '#') {
+                window.open(url, '_blank');
+            }
+        });
+        
+        // Add pointer cursor to indicate clickable
+        friend.style.cursor = 'pointer';
+    });
 
     // === Background image loading ===
     const setBackground = (selector, src) => {
