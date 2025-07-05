@@ -51,7 +51,6 @@ html {
     position: relative;
     overflow: hidden;
     width: 100%;
-    position: relative;
     opacity: 0;
     transform: translateY(30px);
     animation: sectionFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -69,28 +68,47 @@ html {
 /* Removed .section-container:nth-child(4) and (5) as only 3 sections remain */
 
 /* Parallax background effects */
-.main-page-section {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    transition: background-image 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.socials-page-section {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    transition: background-image 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
+.main-page-section,
+.socials-page-section,
 .gallery-page-section {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     transition: background-image 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+
+/* Add gradient fades between sections */
+.main-page-section::after,
+.gallery-page-section::after,
+.socials-page-section::before,
+.gallery-page-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 150px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Bottom fade for all sections except last */
+.main-page-section::after,
+.gallery-page-section::after {
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.8) 100%);
+}
+
+/* Top fade for all sections except first */
+.socials-page-section::before,
+.gallery-page-section::before {
+    top: 0;
+    background: linear-gradient(to top, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.8) 100%);
 }
 
 /* Removed .impact-page-section styles */
