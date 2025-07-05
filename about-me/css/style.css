@@ -1,259 +1,263 @@
-/* Global Styles */
+/* === Variables === */
 :root {
-    --cream: #F5F5DC; /* Light neutral cream */
-    --cyan: #00BCD4; /* Example cyan for accents */
-    --calm-brown: #8B4513; /* Example calm brown */
-    --text-color: #333;
-    --light-text-color: #eee;
+  --cream: #F5F5DC;
+  --cyan: #00BCD4;
+  --calm-brown: #8B4513;
+  --text-color: #333;
+  --light-text-color: #eee;
+}
+
+/* === Global Styles === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    margin: 0;
-    font-family: sans-serif; /* Default, will be overridden for specific elements */
-    color: var(--text-color);
-    line-height: 1.6;
-    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
-    background-color: var(--cream); /* Default background for intro */
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: var(--cream);
+  overflow-x: hidden;
 }
 
-/* Fixed Background Image */
+/* === Fixed Background === */
 .fixed-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/about/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.5); /* Dark overlay */
-    z-index: -1; /* Behind content */
+  position: fixed;
+  inset: 0;
+  background: url('../images/about/bg.jpg') center/cover no-repeat;
+  filter: brightness(0.5);
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* Section 0: Intro Typing */
+/* === Intro Section === */
 .intro-section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--cream); /* Cream background for intro */
-    text-align: center;
-    position: relative;
-    z-index: 1; /* Above fixed background */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Slight shadow to distinguish from gallery */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cream);
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  padding: 0 1rem;
 }
 
 .intro-content {
-    max-width: 90%;
+  max-width: 90vw;
 }
 
 #typing-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 10vw, 8rem); /* Extremely large, responsive */
-    color: var(--text-color);
-    white-space: nowrap; /* Keep text on one line */
-    overflow: hidden; /* Ensures the typing animation works */
-    border-right: 0.05em solid; /* Blinking cursor */
-    animation: typing 3s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
-    display: inline-block; /* Required for border-right animation */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 10vw, 8rem);
+  color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.05em solid var(--text-color);
+  animation: typing 3s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
+  display: inline-block;
+  will-change: width, border-color;
 }
 
 @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: var(--text-color); }
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--text-color);
+  }
 }
 
+/* Removed scroll arrow animation */
 .scroll-down-arrow {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: block;
-    animation: bounce 2s infinite;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  user-select: none;
 }
 
 .scroll-down-arrow img {
-    width: 50px;
-    height: 50px;
-    filter: invert(20%); /* Make arrow visible on cream background */
+  width: 50px;
+  height: 50px;
+  filter: invert(20%);
+  display: block;
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0) translateX(-50%);
-    }
-    40% {
-        transform: translateY(-15px) translateX(-50%);
-    }
-    60% {
-        transform: translateY(-7px) translateX(-50%);
-    }
-}
-
-/* Gallery Section (Main Body) */
+/* === Gallery Section === */
 .gallery-section {
-    position: relative;
-    z-index: 2; /* Above fixed background */
-    background-color: rgba(255, 255, 255, 0.05); /* Slight transparent overlay for content readability */
-    color: var(--light-text-color); /* Text color for content over dark background */
-    padding: 80px 5%; /* Padding around the entire gallery section */
+  position: relative;
+  z-index: 2;
+  background-color: rgba(255 255 255 / 0.05);
+  color: var(--light-text-color);
+  padding: 80px 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
 }
 
 .gallery-item {
-    display: flex;
-    align-items: center; /* Vertically center image and text block */
-    justify-content: space-around; /* Distribute space between image and text */
-    margin-bottom: 150px; /* Ample space between sections */
-    min-height: 70vh; /* Give each item a significant vertical footprint */
-    gap: 50px; /* Space between image and text */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
 
-    opacity: 0; /* Hidden by default for reveal animation */
-    transform: translateY(20px); /* Slight initial translation for reveal */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Smooth fade-in */
+  /* Removed animation and transition */
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
 }
 
-.gallery-item.aos-animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+/* Images */
 .gallery-item img {
-    max-width: 45%; /* Image takes up less than half width */
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-in-out;
+  max-width: 45%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.3);
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
 }
 
 .gallery-item img:hover {
-    transform: scale(1.05); /* Gentle zoom */
+  transform: scale(1.05);
 }
 
+/* Text content */
 .gallery-item .text-content {
-    max-width: 45%; /* Text takes up less than half width */
-    text-align: left; /* Default text alignment */
+  max-width: 45%;
 }
 
 .gallery-item .large-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem); /* Large, responsive text */
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.1; /* Tight line height */
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: rgba(255 255 255 / 0.9);
+  line-height: 1.1;
+  text-shadow: 2px 2px 5px rgba(0 0 0 / 0.5);
+  margin-bottom: 20px;
 }
 
 .gallery-item .small-text {
-    font-family: 'Lora', serif; /* Light serif for captions */
-    font-size: clamp(0.9rem, 2vw, 1.2rem); /* Small, responsive text */
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  font-family: 'Lora', serif;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: rgba(255 255 255 / 0.8);
+  line-height: 1.6;
+  text-shadow: 1px 1px 3px rgba(0 0 0 / 0.4);
+}
+
+.gallery-item .small-text a {
+  color: var(--cyan);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.gallery-item .small-text a:hover {
+  text-decoration: underline;
+  color: var(--light-text-color);
 }
 
 .gallery-item .small-text ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .gallery-item .small-text ul li {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
-/* Specific Layout Adjustments for Each Item */
-/* Default is image left, text right. We'll alternate or customize. */
-
-/* Item 1: Who Am I? (Image Left, Text Right) - default, no specific override needed */
+/* === Layout Variants === */
 .item-1 {
-    flex-direction: row;
+  flex-direction: row;
+  text-align: left;
 }
-.item-1 .large-text { text-align: left; } /* Ensure alignment */
-.item-1 .small-text { text-align: left; }
 
-/* Item 2: Venge.io (Image Right, Text Left) */
 .item-2 {
-    flex-direction: row-reverse; /* Reverse order: text on left, image on right */
+  flex-direction: row-reverse;
+  text-align: right;
 }
-.item-2 .large-text { text-align: right; }
-.item-2 .small-text { text-align: right; }
 
-/* Item 3: Record? (Image Top, Text Bottom - centered) */
 .item-3 {
-    flex-direction: column; /* Stack vertically */
-    justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 30px;
 }
-.item-3 img { max-width: 60%; } /* Make image wider when stacked */
+
+.item-3 img {
+  max-width: 60%;
+}
+
 .item-3 .text-content {
-    max-width: 70%; /* Text content width for centered stack */
-    text-align: center;
-    margin-top: 30px;
+  max-width: 70%;
 }
-.item-3 .large-text { text-align: center; }
-.item-3 .small-text { text-align: center; }
 
-
-/* Item 4: Setup :) (Image Left, Text Right) */
 .item-4 {
-    flex-direction: row;
+  flex-direction: row;
+  text-align: left;
 }
-.item-4 .large-text { text-align: left; }
-.item-4 .small-text { text-align: left; font-family: 'Space Mono', monospace; }
 
-/* Item 5: Cat (Image Right, Text Left) */
+.item-4 .small-text {
+  font-family: 'Space Mono', monospace;
+}
+
 .item-5 {
-    flex-direction: row-reverse;
-    margin-bottom: 200px; /* Extra space at the very bottom */
+  flex-direction: row-reverse;
+  margin-bottom: 200px;
+  text-align: right;
 }
-.item-5 .large-text { text-align: right; }
-.item-5 .small-text { text-align: right; }
 
-
-/* Responsive Design for smaller screens */
+/* === Responsive === */
 @media (max-width: 768px) {
-    .gallery-section {
-        padding: 40px 5%;
-    }
+  .gallery-section {
+    padding: 40px 5vw;
+  }
 
-    .gallery-item {
-        flex-direction: column !important; /* Stack vertically on small screens */
-        justify-content: flex-start; /* Align content to top of the section */
-        align-items: center; /* Center horizontally */
-        margin-bottom: 80px; /* Less space between sections on mobile */
-        min-height: auto; /* Allow height to adjust to content */
-    }
+  .gallery-item {
+    flex-direction: column !important;
+    align-items: center;
+    margin-bottom: 80px;
+    gap: 30px;
+  }
 
-    .gallery-item img {
-        max-width: 90%; /* Images take more width on mobile */
-        height: auto;
-    }
+  .gallery-item img {
+    max-width: 90%;
+  }
 
-    .gallery-item .text-content {
-        max-width: 90%; /* Text takes more width on mobile */
-        margin-top: 30px; /* Space between image and text */
-        text-align: center !important; /* Center text on mobile */
-    }
+  .gallery-item .text-content {
+    max-width: 90%;
+  }
 
-    .gallery-item .large-text {
-        font-size: clamp(2rem, 8vw, 3rem); /* Smaller on mobile */
-        text-align: center !important;
-    }
+  .gallery-item .large-text {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
 
-    .gallery-item .small-text {
-        font-size: clamp(0.9rem, 3.5vw, 1.1rem); /* Adjust font size */
-        text-align: center !important;
-    }
+  .gallery-item .small-text {
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+  }
 
-    .gallery-item .small-text ul {
-        text-align: center; /* Center lists too */
-    }
+  .gallery-item .small-text ul {
+    text-align: center;
+  }
 }
