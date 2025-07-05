@@ -44,7 +44,8 @@
             </a>
 
             <div class="main-input-container">
-                <input type="text" id="charmNameInput" class="main-input" placeholder="ℂ𝕙𝕒𝕣𝕞?">
+                <input type="text" id="charmNameInput" class="main-input" placeholder="ℂ𝕙𝕒𝕣𝕞?" autocomplete="off">
+                <button id="secretButton" class="secret-button">Access Granted</button>
                 <p class="secondary-text">
                     Pushing Revolution
                 </p>
@@ -74,7 +75,7 @@
     <div class="section-container socials-page-section">
         <div class="glassmorphism-rectangle"></div>
         <div class="socials-section">
-            <h2>Connect with Charm</h2>
+            <h2>Connect</h2>
             <div class="socials-links">
                 <a href="https://discordapp.com/users/1198452446456983605" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-discord mr-2"></i>Discord
@@ -92,6 +93,12 @@
         </div>
     </div>
 
+    <div id="pageOverlay" class="page-overlay">
+        <img id="secretGif" src="about-me/images/about/haha.gif" alt="Haha!" class="secret-gif">
+        <button id="closeOverlay" class="close-button" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

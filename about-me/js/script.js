@@ -9,17 +9,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Typing animation for the intro text
     const typingTextElement = document.getElementById('typing-text');
-    const textToType = "Hi, I’m Charm?";
+    const textToType = "Hi, I'm Charm?";
     let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100; // Base typing speed in ms
+    let deleteSpeed = 50;  // Faster deleting speed
+    let waitBeforeDelete = 2000; // Wait 2 seconds before starting to delete
+    let waitAfterDelete = 1000;  // Wait 1 second after deleting before typing again
 
     function typeText() {
-        if (charIndex < textToType.length) {
-            typingTextElement.textContent += textToType.charAt(charIndex);
+        const currentText = textToType.substring(0, charIndex);
+        typingTextElement.textContent = currentText;
+        
+        // Add cursor class if not already added
+        typingTextElement.classList.add('typing-cursor');
+
+        if (!isDeleting && charIndex < textToType.length) {
+            // Typing
             charIndex++;
-            setTimeout(typeText, 100); // Adjust typing speed here
+            setTimeout(typeText, typingSpeed);
+        } else if (isDeleting && charIndex > 0) {
+            // Deleting
+            charIndex--;
+            setTimeout(typeText, deleteSpeed);
+        } else if (charIndex === textToType.length) {
+            // Finished typing, wait then start deleting
+            if (!isDeleting) {
+                isDeleting = true;
+                setTimeout(typeText, waitBeforeDelete);
+            } else {
+                // Finished deleting, wait then start typing again
+                isDeleting = false;
+                setTimeout(typeText, waitAfterDelete);
+            }
         } else {
-            // Optional: Remove blinking cursor after typing is complete
-            typingTextElement.style.borderRight = 'none';
+            // Shouldn't get here, but just in case
+            isDeleting = false;
+            charIndex = 0;
+            setTimeout(typeText, waitAfterDelete);
         }
     }
 
