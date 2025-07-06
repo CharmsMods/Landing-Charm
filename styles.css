@@ -17,6 +17,28 @@ body {
     min-height: 100vh;
 }
 
+/* Logo rotation animation */
+@keyframes rotate360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Logo specific styles */
+.site-logo {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.rotate-logo {
+    animation: rotate360 0.8s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0.9 !important;
+}
+
 /* Enhanced logo with modern entrance animation */
 .site-logo {
     position: absolute;
@@ -48,8 +70,9 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
     position: relative;
+    overflow: hidden;
+    width: 100%;
     opacity: 0;
     transform: translateY(30px);
     animation: sectionFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -67,28 +90,47 @@ html {
 /* Removed .section-container:nth-child(4) and (5) as only 3 sections remain */
 
 /* Parallax background effects */
-.main-page-section {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    transition: background-image 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.socials-page-section {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    transition: background-image 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
+.main-page-section,
+.socials-page-section,
 .gallery-page-section {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     transition: background-image 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+
+/* Add gradient fades between sections */
+.main-page-section::after,
+.gallery-page-section::after,
+.socials-page-section::before,
+.gallery-page-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 150px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Bottom fade for all sections except last */
+.main-page-section::after,
+.gallery-page-section::after {
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.8) 100%);
+}
+
+/* Top fade for all sections except first */
+.socials-page-section::before,
+.gallery-page-section::before {
+    top: 0;
+    background: linear-gradient(to top, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.8) 100%);
 }
 
 /* Removed .impact-page-section styles */
@@ -237,8 +279,7 @@ html {
     bottom: 1.5rem;
     right: 1.5rem;
     padding: 0.5rem 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     color: #fff;
@@ -259,8 +300,8 @@ html {
 }
 
 .about-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
 
@@ -309,12 +350,12 @@ html {
     text-decoration: none;
     font-size: 1rem;
     padding: 0.5rem 1rem;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 9999px;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s ease;
     white-space: nowrap;
     position: relative;
-    background-color: #000;
+    background-color: transparent;
     overflow: hidden;
     opacity: 0;
     transform: translateY(30px) scale(0.9);
@@ -333,56 +374,9 @@ html {
     }
 }
 
-/* Enhanced rainbow border with rotation */
-.socials-links a::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border-radius: 9999px;
-    background: linear-gradient(45deg,
-        #ff0000, #ff8000, #ffff00, #80ff00,
-        #00ff00, #00ff80, #00ffff, #0080ff,
-        #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
-    );
-    background-size: 400% 400%;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: -1;
-    animation: rainbowRotate 3s linear infinite;
-}
-
-@keyframes rainbowRotate {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.socials-links a::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 9999px;
-    background-color: #000;
-    z-index: -1;
-    transition: all 0.3s ease;
-}
-
 .socials-links a:hover {
-    border-color: transparent;
-    color: #fff;
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2),
-                0 0 30px rgba(255, 255, 255, 0.1);
-}
-
-.socials-links a:hover::before {
-    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px);
 }
 
 /* Enhanced glassmorphism with subtle animation */
@@ -398,6 +392,9 @@ html {
     border-radius: 20px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     z-index: 1;
@@ -454,20 +451,19 @@ html {
     justify-content: center;
     width: 100%;
     max-width: 600px;
-    padding: 1.5rem 2rem;
-    background: linear-gradient(135deg, #333, #444);
+    padding: 1.2rem 2rem;
+    background: transparent;
     color: #fff;
     text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 600;
-    border-radius: 15px;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    border: 2px solid transparent;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     opacity: 0;
-    transform: translateX(-50px) rotateY(15deg);
+    transform: translateX(-30px);
     animation: buttonSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -481,35 +477,10 @@ html {
     }
 }
 
-/* Enhanced shimmer effect */
-.creation-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        rgba(0, 204, 255, 0.3),
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: 0;
-}
-
-.creation-button:hover::before {
-    left: 100%;
-}
-
 .creation-button:hover {
-    background: linear-gradient(135deg, #555, #666);
-    transform: translateY(-10px) scale(1.03) rotateX(5deg);
-    border-color: var(--primary-glow);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(0, 204, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(0) translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .creation-button span {
@@ -525,7 +496,7 @@ html {
 }
 
 .creation-button:hover i {
-    transform: scale(1.2) rotate(5deg);
+    transform: translateX(5px);
 }
 
 /* Removed enhanced impact section styles */
@@ -564,6 +535,197 @@ html {
         font-size: 1.3rem;
         padding: 1.2rem 1.5rem;
     }
+}
+
+/* GIF Container */
+.secret-gif {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    max-width: 90%;
+    max-height: 80vh;
+    min-width: 100px;  /* Ensure it takes up space even if image fails */
+    min-height: 100px; /* Ensure it takes up space even if image fails */
+    background-color: rgba(255, 0, 0, 0.1); /* Temporary background to see the container */
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 0.8s ease-out;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 2002;
+    display: block; /* Ensure it's displayed */
+    visibility: visible; /* Ensure it's visible */
+}
+
+.secret-gif.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    background-color: transparent; /* Remove the debug background when visible */
+}
+
+/* Close Button */
+.close-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    z-index: 2003;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close-button.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.close-button:hover {
+    background: #fff;
+    transform: scale(1.1) !important;
+}
+
+.close-button:active {
+    transform: scale(0.95) !important;
+}
+
+/* Shake animation for incorrect password */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Page Overlay and Secret Image */
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+}
+
+.page-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.secret-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    max-width: 90%;
+    max-height: 90%;
+    opacity: 0;
+    z-index: 2001;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.secret-image.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+/* Hide elements during transition */
+body.hide-content .main-input-container,
+body.hide-content .secondary-text {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Gallery section styles to match socials section */
+.gallery-section {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.gallery-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: titleSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+}
+
+.gallery-buttons-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.gallery-section .creation-button {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    background-color: transparent;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: socialButtonEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gallery-section .creation-button:nth-child(1) { animation-delay: 0.5s; }
+.gallery-section .creation-button:nth-child(2) { animation-delay: 0.7s; }
+
+.gallery-section .creation-button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px);
+}
+
+.gallery-section .creation-button i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.gallery-section .creation-button:hover i {
+    transform: translateX(3px);
 }
 
 @media (max-width: 639px) {

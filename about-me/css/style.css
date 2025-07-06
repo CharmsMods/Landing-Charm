@@ -63,30 +63,20 @@ body {
   font-weight: 600;
   font-size: clamp(2rem, 10vw, 8rem);
   color: var(--text-color);
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 0.05em solid var(--text-color);
-  animation: typing 3s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
   display: inline-block;
-  will-change: width, border-color;
+  position: relative;
+  min-height: 1.2em; /* Ensure space for the cursor */
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+#typing-text::after {
+  content: '|';
+  animation: blink 0.75s step-end infinite;
+  margin-left: 2px;
 }
 
-@keyframes blink-caret {
-  0%, 100% {
-    border-color: transparent;
-  }
-  50% {
-    border-color: var(--text-color);
-  }
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Removed scroll arrow animation */
