@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Keep only the logo rotation effect
+    const siteLogo = document.querySelector('.site-logo');
+    if (siteLogo) {
+        siteLogo.style.opacity = '0.9';
+        siteLogo.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Remove any existing animation classes
+            siteLogo.classList.remove('rotate-logo');
+            
+            // Force a reflow to ensure the animation restarts
+            void siteLogo.offsetWidth;
+            
+            // Add the rotation class
+            siteLogo.classList.add('rotate-logo');
+            
+            // Remove the class after animation completes
+            setTimeout(() => {
+                siteLogo.classList.remove('rotate-logo');
+            }, 800);
+        });
+    }
+    
     // Password input handling
     const charmInput = document.getElementById('charmNameInput');
     const secretButton = document.getElementById('secretButton');
@@ -122,11 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle friend name clicks
     document.querySelectorAll('.friend-name').forEach(friend => {
         friend.addEventListener('click', (e) => {
-            e.preventDefault();
-            const url = friend.getAttribute('data-url');
-            if (url && url !== '#') {
-                window.open(url, '_blank');
+            const href = friend.getAttribute('href');
+            const dataUrl = friend.getAttribute('data-url');
+            
+            // Only prevent default if there's a data-url and no href
+            if ((!href || href === '#') && dataUrl && dataUrl !== '#') {
+                e.preventDefault();
+                window.open(dataUrl, '_blank');
             }
+            // If there's an href, let it work normally
         });
         
         // Add pointer cursor to indicate clickable
@@ -242,7 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scramblers = [];
 
-    document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, a, span, li, button, .friend-name').forEach(el => {
+    // Only apply scramble effect to friend names
+    document.querySelectorAll('.friend-name').forEach(el => {
         if (
             el.id === 'charmNameInput' ||
             el.classList.contains('secondary-text') ||
@@ -304,29 +332,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // === Periodic auto-scramble ===
-    setInterval(() => {
-        if (scramblers.length > 0) {
-            const scrambler = scramblers[Math.floor(Math.random() * scramblers.length)];
-            const el = scrambler.el;
-
-            if (!el.matches(':hover') && !el.parentElement.matches(':hover')) {
-                // Only scramble if the element is visible in the viewport
-                const rect = el.getBoundingClientRect();
-                const isVisible = (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
-                
-                if (isVisible) {
-                    scrambler.setStyle();
-                    scrambler.startScrambling();
-                    // Longer duration for the auto-scramble effect
-                    setTimeout(scrambler.stopScrambling, 500);
-                }
-            }
-        }
-    }, 2000); // Longer interval between auto-scrambles
+    // Auto-scramble removed - now only hover effect on friend names // Longer interval between auto-scrambles
 });

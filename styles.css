@@ -17,6 +17,28 @@ body {
     min-height: 100vh;
 }
 
+/* Logo rotation animation */
+@keyframes rotate360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Logo specific styles */
+.site-logo {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.rotate-logo {
+    animation: rotate360 0.8s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0.9 !important;
+}
+
 /* Enhanced logo with modern entrance animation */
 .site-logo {
     position: absolute;
