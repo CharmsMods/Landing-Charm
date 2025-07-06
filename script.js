@@ -282,9 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // === Skip scramble for 'inception'
-        const isInception = el.id === 'inception';
-        if (!isInception) {
+        const skipScramble = el.id === 'inception' || el.id === 'lisa061';
+
+        if (!skipScramble) {
             const scrambler = new TextScramble(el);
             scramblers.push(scrambler);
 
@@ -312,8 +312,27 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // === Special behavior for 'inception' (no scramble)
-        if (isInception) {
+        // === Special behavior for 'inception'
+        if (el.id === 'inception') {
+            const originalText = el.textContent;
+
+            el.addEventListener('mouseenter', () => {
+                el.textContent = 'EVANS GF';
+                el.style.color = 'crimson';
+                el.style.textShadow = '0 0 10px crimson';
+                el.style.transform = 'scale(1.2)';
+            });
+
+            el.addEventListener('mouseleave', () => {
+                el.textContent = originalText;
+                el.style.color = '';
+                el.style.textShadow = '';
+                el.style.transform = '';
+            });
+        }
+
+        // === Special behavior for 'lisa061'
+        if (el.id === 'lisa061') {
             const originalText = el.textContent;
 
             el.addEventListener('mouseenter', () => {
