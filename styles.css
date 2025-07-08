@@ -145,6 +145,138 @@ html {
     align-items: center;
 }
 
+/* Button Styles */
+.socials-links,
+.gallery-buttons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+/* Base button styles for both socials and gallery */
+.socials-links a,
+.gallery-buttons-grid a {
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 3em;
+    min-width: 200px;
+    text-align: center;
+    position: relative;
+    
+    /* Typography */
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    
+    /* Visual styling */
+    border-radius: 1em;
+    outline: none;
+    cursor: pointer;
+    
+    /* Animation */
+    transition: all 0.3s;
+}
+
+/* Social links - Black glow */
+.socials-links a {
+    --glow-color: rgba(0, 0, 0, 0.8);
+    --glow-spread-color: rgba(0, 0, 0, 0.5);
+    --btn-color: #000000;
+    
+    color: #ffffff;
+    background-color: var(--btn-color);
+    border: .25em solid #333333;
+    text-shadow: 0 0 .5em var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+                0 0 4em 1em var(--glow-spread-color),
+                inset 0 0 .75em .25em rgba(255, 255, 255, 0.2);
+}
+
+/* Gallery buttons - Purple glow */
+.gallery-buttons-grid a {
+    --glow-color: rgb(217, 176, 255);
+    --glow-spread-color: rgba(191, 123, 255, 0.781);
+    --btn-color: rgb(100, 61, 136);
+    
+    color: var(--glow-color);
+    background-color: var(--btn-color);
+    border: .25em solid var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+                0 0 4em 1em var(--glow-spread-color),
+                inset 0 0 .75em .25em var(--glow-color);
+}
+
+/* Hover states */
+.socials-links a:hover {
+    color: #000000;
+    background-color: #ffffff;
+    box-shadow: 0 0 1em .5em rgba(255, 255, 255, 0.3),
+                0 0 4em 2em rgba(0, 0, 0, 0.8),
+                inset 0 0 .75em .25em rgba(0, 0, 0, 0.3);
+}
+
+.gallery-buttons-grid a:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+                0 0 4em 2em var(--glow-spread-color),
+                inset 0 0 .75em .25em var(--glow-color);
+}
+
+/* Active states */
+.socials-links a:active {
+    box-shadow: 0 0 0.6em .25em rgba(0, 0, 0, 0.8),
+                0 0 2.5em 2em rgba(0, 0, 0, 0.6),
+                inset 0 0 .5em .25em rgba(0, 0, 0, 0.5);
+}
+
+.gallery-buttons-grid a:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+                0 0 2.5em 2em var(--glow-spread-color),
+                inset 0 0 .5em .25em var(--glow-color);
+}
+
+/* Icon styling */
+.socials-links i,
+.gallery-buttons-grid i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* Glow effect extension */
+.socials-links a::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+.gallery-buttons-grid a::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
 /* Modern floating animation for friend names */
 .friend-name {
     position: absolute;
