@@ -7,20 +7,12 @@ A modern, interactive landing page featuring a collection of links to various pr
 - [EvanRunner](https://github.com/EvanRunnerDev) - Trusted Developer
 - [Charm?](https://github.com/CharmsMods) - Project Owner & Developer
 
-## 🌟 Features
-
-- **Interactive Main Page** with animated friend links
-- **Project Showcase** section highlighting key creations
-- **Social Media Integration** with direct links to various platforms
-- **Responsive Design** that works on desktop and mobile devices
-- **Modern UI** with glassmorphism effects and smooth animations
-
 ## 🛠️ Projects Showcased
 
-- **Modding Repository** - A collection of mods and resources
 - **Charms Main Site** - The official CharmsMods website
+- **Modding Repository** - A collection of mods and resources
 
-## 👥 Featured Friends & Collaborators
+## 👥 Featured Friends
 
 - KingBowserXD
 - ydk aaron
@@ -32,7 +24,7 @@ A modern, interactive landing page featuring a collection of links to various pr
 - Lisa061
 - Inception
 
-## 🌐 Connect
+## 🌐 Connect with Charm
 
 - [Discord](https://discordapp.com/users/1198452446456983605)
 - [GitHub](https://github.com/CharmsMods)
@@ -41,9 +33,8 @@ A modern, interactive landing page featuring a collection of links to various pr
 
 ## 🚀 Getting Started
 
-1. Clone the repository
-2. Open `index.html` in your preferred web browser
-3. Explore the interactive elements and links
+1. Open `index.html` in your preferred web browser
+2. Explore the interactive elements and links
 
 ## 🛠️ Built With
 
