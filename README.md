@@ -4,7 +4,7 @@ A modern, interactive landing page featuring a collection of links to various pr
 
 ## 🤝 Contributors
 
-- [Lucky?🥞]([https://github.com/](https://github.com/LuckiestFemboy)) - Developer
+- [Lucky?🥞](https://github.com/LuckiestFemboy) - Developer
 - [EvanRunner](https://github.com/EvanRunnerDev) - Trusted Developer
 - [Charm?](https://github.com/CharmsMods) - Project Owner & Developer
 
