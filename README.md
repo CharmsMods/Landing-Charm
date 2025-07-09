@@ -2,6 +2,11 @@
 
 A modern, interactive landing page featuring a collection of links to various projects and social media profiles. This project serves as a central hub for Charm's online presence and collaborations.
 
+## 🤝 Contributors
+
+- [EvanRunner](https://github.com/EvanRunnerDev) - Trusted Developer
+- [Charm?](https://github.com/CharmsMods) - Project Owner & Developer
+
 ## 🌟 Features
 
 - **Interactive Main Page** with animated friend links
@@ -47,11 +52,6 @@ A modern, interactive landing page featuring a collection of links to various pr
 - JavaScript
 - Font Awesome Icons
 - Google Fonts
-
-## 🤝 Contributors
-
-- [EvanRunner](https://github.com/EvanRunnerDev) - Development
-- [Charm?](https://github.com/CharmsMods) - Project Owner & Developer
 
 ## 📄 License
 
