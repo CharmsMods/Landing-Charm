@@ -1,0 +1,576 @@
+/* Basic Reset & Variables */
+:root {
+    --color-white: #f8f8f8;
+    --color-black: #1a1a1a;
+    --color-cyan: #00bcd4; /* A vibrant cyan */
+    --color-warm-brown: #8b5e3c;
+    --color-light-gray: #e0e0e0;
+    --color-dark-gray: #333;
+    --color-glass-bg: rgba(255, 255, 255, 0.15);
+    --color-glass-border: rgba(255, 255, 255, 0.2);
+    --transition-speed: 0.3s;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base Body & Typography */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    font-family: 'Comfortaa', cursive;
+    color: var(--color-black);
+    margin-bottom: 0.5em;
+    text-align: center; /* Ensure all headings are centered */
+}
+
+h1 { font-size: 3.5em; }
+h2 { font-size: 2.5em; }
+h3 { font-size: 1.8em; }
+
+p {
+    margin-bottom: 1em;
+    text-align: center; /* Ensure all paragraphs are centered */
+    max-width: 800px;
+    margin-left: auto; /* Center block elements */
+    margin-right: auto; /* Center block elements */
+}
+
+a {
+    color: var(--color-cyan);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--color-warm-brown);
+}
+
+/* Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    /* Add text-align center for containers if needed for specific layouts,
+       but usually individual elements are better to center */
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.primary-btn {
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+    border: 2px solid var(--color-cyan);
+}
+
+.primary-btn:hover {
+    background-color: transparent;
+    color: var(--color-cyan);
+    transform: translateY(-3px);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--color-warm-brown);
+    border: 2px solid var(--color-warm-brown);
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-warm-brown);
+    color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* Section Styling */
+section {
+    padding: 80px 5%;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Ensure content within sections is centered horizontally */
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 70px; /* Offset for sticky header */
+}
+
+/* Section Backgrounds & Fades */
+.light-section {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    position: relative; /* For the fade-in effect */
+}
+
+.dark-section {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    position: relative; /* For the fade-in effect */
+}
+
+.dark-section h1, .dark-section h2, .dark-section h3 {
+    color: var(--color-white);
+}
+
+/* Smooth fade transition between sections */
+.light-section::after, .dark-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Adjust height for desired fade length */
+    z-index: 1; /* Ensure it's above content for aesthetic */
+}
+
+/* Fade from light to dark */
+.light-section + .dark-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Adjust height for desired fade length */
+    background: linear-gradient(to top, var(--color-black) 0%, rgba(26, 26, 26, 0) 100%);
+    z-index: 1;
+}
+
+/* Fade from dark to light */
+.dark-section + .light-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Adjust height for desired fade length */
+    background: linear-gradient(to top, var(--color-white) 0%, rgba(248, 248, 248, 0) 100%);
+    z-index: 1;
+}
+
+
+/* Main content styling */
+main {
+    padding-top: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tools Section */
+.tools-section {
+    flex: 1;
+    padding: 2rem 1rem;
+    background-color: var(--color-white);
+}
+
+.tools-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tool-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--color-black);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tool-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.tool-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-content h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--color-warm-brown);
+    text-align: left;
+}
+
+.tool-content p {
+    margin: 0 0 1rem 0;
+    color: var(--color-dark-gray);
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* Hero Section */
+.hero-section {
+    padding-top: 150px; /* Account for sticky header */
+    height: 100vh;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin-top: -50px; /* Adjust if needed to center vertically */
+}
+
+.hero-section h1 {
+    font-size: 4em;
+    margin-bottom: 10px;
+    color: var(--color-black);
+}
+
+.animated-subtext {
+    font-size: 1.8em;
+    color: var(--color-warm-brown);
+    height: 1.2em; /* Ensure consistent height during typing */
+    display: inline-block; /* For cursor positioning */
+}
+
+.animated-subtext #typing-text {
+    font-weight: bold;
+}
+
+/* Fix for the double cursor: ensure only one is visible */
+.cursor {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.07em; /* Make it a thin line */
+    height: 1.2em;
+    background-color: var(--color-cyan);
+    animation: blinkCursor 0.8s steps(3, start) infinite;
+    margin-left: 2px;
+}
+
+@keyframes blinkCursor {
+    0%, 75% { opacity: 1; }
+    76%, 100% { opacity: 0; }
+}
+
+.hero-buttons {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* For mobile responsiveness */
+}
+
+/* Project Grid */
+.project-grid, .other-sites-grid, .skills-grid, .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.project-card, .site-card, .tool-card {
+    background-color: var(--color-light-gray);
+    padding: 0; /* Removed padding from here, added to tool-content */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Ensures image corners are rounded */
+}
+
+.dark-section .project-card, .dark-section .site-card, .dark-section .tool-card {
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+}
+
+.dark-section .project-card h3, .dark-section .site-card h3, .dark-section .tool-card h3 {
+    color: var(--color-cyan);
+}
+
+.project-card:hover, .site-card:hover, .tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h3, .site-card h3 {
+    margin-bottom: 10px;
+    color: var(--color-warm-brown);
+}
+
+.project-card p, .site-card p {
+    font-size: 0.95em;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Push link to bottom */
+}
+
+/* Tool Card Specific Styles */
+.tool-card {
+    text-decoration: none; /* Remove underline from the entire card link */
+    color: inherit; /* Inherit text color from parent */
+    /* Adjust flex-direction if content needs reordering */
+}
+
+.tool-image {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    border-top-left-radius: 15px; /* Match card border radius */
+    border-top-right-radius: 15px; /* Match card border radius */
+}
+
+.tool-content {
+    padding: 20px; /* Add padding here for text content */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tool-card h3 {
+    margin-top: 0; /* Remove top margin as padding is on parent */
+    margin-bottom: 10px;
+    color: var(--color-warm-brown); /* Consistent with other headings */
+}
+
+.tool-card p {
+    font-size: 0.95em;
+    margin-bottom: 0; /* Remove bottom margin if not followed by a link inside content */
+    text-align: center;
+}
+
+
+.project-link, .site-link {
+    display: inline-block;
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.project-link:hover, .site-link:hover {
+    background-color: var(--color-warm-brown);
+    transform: translateY(-2px);
+}
+
+/* Skills Section */
+.skill-item {
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    cursor: default;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.skill-item:hover {
+    background-color: var(--color-warm-brown);
+    transform: scale(1.05);
+}
+
+/* Socials Section */
+.social-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content within the button */
+    gap: 10px;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: var(--color-white); /* Default for social buttons */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.social-btn img {
+    width: 24px;
+    height: 24px;
+    /* Removed filter: invert(1) from here to handle per-button */
+}
+
+.discord-btn {
+    background-color: #7289DA;
+}
+.discord-btn img {
+    filter: invert(1); /* Make Discord icon white */
+}
+.discord-btn:hover {
+    background-color: #5b6eae;
+    transform: translateY(-3px);
+}
+
+.github-btn {
+    background-color: #24292e;
+}
+.github-btn img {
+    filter: invert(1); /* Make GitHub icon white */
+}
+.github-btn:hover {
+    background-color: #000;
+    transform: translateY(-3px);
+}
+
+/* Instagram specific style */
+.instagram-btn {
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.instagram-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-3px);
+}
+/* No filter needed for Instagram icon as it's colorful */
+
+/* Snapchat specific style */
+.snapchat-btn {
+    background-color: #FFFC00; /* Snapchat Yellow */
+    color: #1a1a1a; /* Dark text for contrast */
+}
+/* No filter needed for Snapchat icon as it's colorful */
+.snapchat-btn:hover {
+    background-color: #e6e400; /* Slightly darker yellow */
+    transform: translateY(-3px);
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--color-black);
+    color: var(--color-light-gray);
+    padding: 30px 5%;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Scroll Animation - Fade In */
+.content-fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.content-fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar nav {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        display: none; /* Hide by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        background: var(--color-glass-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--color-glass-border);
+        position: absolute;
+        top: 100%; /* Position below navbar */
+        left: 0;
+        padding: 20px;
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform var(--transition-speed) ease-in-out;
+    }
+
+    .nav-links.open {
+        display: flex; /* Show when open */
+        transform: translateX(0);
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+        text-align: center;
+        color: var(--color-black);
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger icon */
+    }
+
+    h1 { font-size: 3em; }
+    h2 { font-size: 2em; }
+    .animated-subtext { font-size: 1.5em; }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .project-grid, .other-sites-grid, .skills-grid, .tool-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card, .site-card, .tool-card {
+        padding: 20px;
+    }
+
+    section {
+        padding: 60px 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 1.8em; }
+    .animated-subtext { font-size: 1.2em; }
+    .btn {
+        width: 100%;
+    }
+}

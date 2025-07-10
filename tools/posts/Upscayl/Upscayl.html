@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Upscayl: Free AI Image Upscaler</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+        }
+        /* Custom styles for better aesthetics beyond basic Tailwind */
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem; /* Rounded corners */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background-color: #4f46e5; /* Indigo 600 */
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem; /* More rounded */
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover {
+            background-color: #4338ca; /* Indigo 700 */
+            transform: translateY(-2px);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Blue to Purple gradient */
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #6366f1, #8b5cf6);
+        }
+        /* Custom list item style for "Why it's so cool" */
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .feature-icon {
+            flex-shrink: 0;
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+            color: #4f46e5; /* Indigo for icons */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center py-8">
+
+    <!-- Hero Section -->
+    <header class="w-full text-center py-16 px-4 sm:px-6 lg:px-8 gradient-bg rounded-b-3xl mb-12 shadow-lg">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-4 leading-tight">
+            Unleash the Clarity: <span class="block mt-2">Discover <span class="text-yellow-300">Upscayl</span></span>
+        </h1>
+        <p class="text-xl sm:text-2xl text-white opacity-90 mb-8 max-w-3xl mx-auto">
+            Transform your fuzzy photos into crystal-clear masterpieces with the power of AI.
+        </p>
+        <a href="https://upscayl.org/download/" target="_blank" rel="noopener noreferrer" class="btn-primary text-lg animate-bounce-subtle">
+            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Download Upscayl Now!
+        </a>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- What is Upscayl? -->
+        <section class="text-center">
+            <h2 class="text-4xl font-bold text-gradient mb-6">🔍 What is Upscayl?</h2>
+            <p class="text-lg leading-relaxed max-w-4xl mx-auto">
+                Upscayl is a revolutionary <span class="font-semibold">free, open-source, AI-powered image upscaling app</span> that works seamlessly across Windows, macOS, Linux, and even in the cloud. Built on cutting-edge deep-learning models like <span class="font-semibold">Real-ESRGAN</span>, it intelligently guesses and adds intricate details to low-resolution images. This allows you to effortlessly transform fuzzy photos into stunning, crystal-clear versions, even scaling them up to an impressive <span class="font-semibold">16x larger!</span>
+            </p>
+        </section>
+
+        <!-- Why It’s So Cool -->
+        <section>
+            <h2 class="text-4xl font-bold text-center text-gradient mb-8">✨ Why It's So Cool</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1: Totally Free & Open-Source -->
+                <div class="card">
+                    <div class="feature-item">
+                        <span class="feature-icon">💰</span>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Totally Free & Open-Source</h3>
+                            <p class="text-gray-700">No hidden fees, no trials, no subscriptions. Upscayl is freely available forever, and its AGPL licensed source code means you can even inspect and tweak it yourself.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature 2: Privacy-First, Local Processing -->
+                <div class="card">
+                    <div class="feature-item">
+                        <span class="feature-icon">🔒</span>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Privacy-First, Local Processing</h3>
+                            <p class="text-gray-700">Your images never leave your machine. Everything runs locally on your own computer, ensuring complete privacy and peace of mind.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature 3: Cross-Platform & Accessible -->
+                <div class="card">
+                    <div class="feature-item">
+                        <span class="feature-icon">💻</span>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Cross-Platform & Accessible</h3>
+                            <p class="text-gray-700">Enjoy stable desktop builds across all major operating systems: Windows, macOS, and Linux. Linux users even get early access to updates!</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature 4: Multiple AI Models for All Needs -->
+                <div class="card">
+                    <div class="feature-item">
+                        <span class="feature-icon">🧠</span>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Multiple AI Models for All Needs</h3>
+                            <p class="text-gray-700">Choose from a variety of powerful AI models like Lite, Standard, Remacri, Ultramix, Digital Art, and High-Fidelity to achieve the perfect look, whether it's sharpness, vibrant colors, or artistic flair.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature 5: Batch & Double-Upscayl Support -->
+                <div class="card">
+                    <div class="feature-item">
+                        <span class="feature-icon">📦</span>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Batch & Double-Upscayl Support</h3>
+                            <p class="text-gray-700">Process dozens of images at once, or upscale an image twice for truly ultra-high fidelity. Perfect for restoring entire photo collections in one go.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature 6: User-Friendly Interface -->
+                <div class="card">
+                    <div class="feature-item">
+                        <span class="feature-icon">🤩</span>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">User-Friendly Interface</h3>
+                            <p class="text-gray-700">Its intuitive drag-and-drop interface and simple settings make it incredibly easy for anyone, even non-technical users, to achieve impressive results fast.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature 7: Active, Supportive Community -->
+                <div class="card md:col-span-2 lg:col-span-1 mx-auto max-w-sm"> <!-- Centered for single item -->
+                    <div class="feature-item">
+                        <span class="feature-icon">💖</span>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Active, Supportive Community</h3>
+                            <p class="text-gray-700">Benefit from a vibrant and engaged community, with ongoing development and support evident in its strong GitHub presence and user feedback.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What Users Say -->
+        <section class="bg-indigo-50 rounded-2xl p-8 shadow-inner">
+            <h2 class="text-4xl font-bold text-center text-gradient mb-8">💬 What Users Say</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <blockquote class="card text-center">
+                    <p class="text-lg italic text-gray-800 mb-4">
+                        "I’ve been looking everywhere and have settled on Upscayl. It’s free… seems better than all the paid ones I tried."
+                    </p>
+                    <footer class="font-medium text-indigo-700">- An Upscayl User</footer>
+                </blockquote>
+                <blockquote class="card text-center">
+                    <p class="text-lg italic text-gray-800 mb-4">
+                        "Getting an error… works like a charm now, first test images look impressive. Great work!"
+                    </p>
+                    <footer class="font-medium text-indigo-700">- A Reddit User (r/webdev)</footer>
+                </blockquote>
+                <blockquote class="card text-center">
+                    <p class="text-lg italic text-gray-800 mb-4">
+                        "Upscayl takes low resolution and blurry images and sharpens them while increasing the size up to 4×…runs right on your computer, no Internet connection, no info shared."
+                    </p>
+                    <footer class="font-medium text-indigo-700">- A Reddit User (r/MacApps)</footer>
+                </blockquote>
+                <blockquote class="card text-center">
+                    <p class="text-lg italic text-gray-800 mb-4">
+                        "Detail eye after scaling…" (users showed improved sharpness in photo eye detail)
+                    </p>
+                    <footer class="font-medium text-indigo-700">- A GIMP Forum User</footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- How to Start Using It -->
+        <section>
+            <h2 class="text-4xl font-bold text-center text-gradient mb-8">🛠️ How to Start Using It</h2>
+            <ol class="list-decimal list-inside text-lg space-y-4 max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+                <li>
+                    <strong>Download Upscayl:</strong> Get the latest version from the <a href="https://upscayl.org/download/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline font-semibold">official site</a> or <a href="https://github.com/upscayl/upscayl/releases" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline font-semibold">GitHub releases</a>.
+                </li>
+                <li>
+                    <strong>Check GPU Compatibility:</strong> For the best performance, ensure you have a Vulkan-compatible GPU.
+                </li>
+                <li>
+                    <strong>Install the App:</strong> Install the downloaded file (AppImage for Linux, DMG for macOS, EXE for Windows).
+                </li>
+                <li>
+                    <strong>Open and Prepare:</strong> Launch Upscayl, then simply drag and drop your images or select them manually. Choose your preferred AI model and upscale settings.
+                </li>
+                <li>
+                    <strong>Upscayl!</strong> Click the "Upscayl" button, wait a few moments depending on your image size and system, and behold your newly enhanced, crystal-clear images!
+                </li>
+            </ol>
+        </section>
+
+        <!-- Common Alternatives -->
+        <section class="text-center bg-gray-100 p-8 rounded-2xl shadow">
+            <h2 class="text-4xl font-bold text-center text-gradient mb-6">🆚 Common Alternatives</h2>
+            <p class="text-lg leading-relaxed max-w-4xl mx-auto mb-6">
+                While commercial upscalers like Topaz Gigapixel, Krea, or Magnific offer advanced features (sometimes generating new elements using diffusion), Upscayl stands out as a pure upscaler. It focuses on intelligently enhancing what's already there.
+            </p>
+            <p class="text-lg leading-relaxed max-w-4xl mx-auto font-semibold text-indigo-800">
+                If your priorities are <span class="text-purple-700">privacy, open-source transparency, local processing, and efficient batch operations</span>, Upscayl is undoubtedly a top-tier choice.
+            </p>
+        </section>
+
+        <!-- Final Thoughts -->
+        <section class="text-center pb-12">
+            <h2 class="text-4xl font-bold text-center text-gradient mb-6">🎉 Final Thoughts</h2>
+            <p class="text-lg leading-relaxed max-w-4xl mx-auto mb-6">
+                Upscayl masterfully blends powerful AI capabilities with a commitment to user privacy, all within an easy-to-use, open-source package. Whether you're breathing new life into cherished old family photos, or preparing high-quality images for your next creative project, Upscayl puts a smart image-defuzzing tool right at your fingertips – completely free.
+            </p>
+            <p class="text-xl font-semibold max-w-4xl mx-auto text-indigo-800 mb-8">
+                Who's it for? Creators, designers, developers, photographers – and anyone who appreciates a simple, effective, and no-nonsense way to make their images truly pop.
+            </p>
+            <a href="https://upscayl.org/download/" target="_blank" rel="noopener noreferrer" class="btn-primary text-xl px-8 py-4 animate-bounce-subtle">
+                <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                Experience Upscayl Today!
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="w-full text-center py-8 mt-12 text-gray-500 text-sm">
+        <p>&copy; 2025 Upscayl Showcase. All rights reserved. Information based on publicly available data.</p>
+    </footer>
+
+    <!-- A subtle bouncing animation for CTA -->
+    <style>
+        @keyframes bounce-subtle {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+        .animate-bounce-subtle {
+            animation: bounce-subtle 2s infinite ease-in-out;
+        }
+    </style>
+
+</body>
+</html>

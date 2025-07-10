@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windhawk - Ultimate Windows Customization Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://windhawk.net/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🌬️ Windhawk</h1>
+            <p class="tagline">The Ultimate Windows Customization Tool</p>
+            <nav>
+                <ul>
+                    <li><a href="#what-is-windhawk">What is Windhawk?</a></li>
+                    <li><a href="#what-can-it-do">What Can It Do?</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#key-features">Key Features</a></li>
+                    <li><a href="#use-cases">Use Cases</a></li>
+                    <li><a href="#example-mods">Example Mods</a></li>
+                    <li><a href="#important-notes">Important Notes</a></li>
+                    <li><a href="#learn-more">Learn More</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="hero">
+            <p><strong>Windhawk is a powerful and non-destructive Windows modding framework developed by Ramon Unch, the creator of 7+ Taskbar Tweaker. It empowers users to customize and modify Windows system behavior and UI elements by loading small "mods" directly into memory, without permanently altering system files.</strong></p>
+            <p>Think of Windhawk as a safe and dynamic way to tweak Windows in real time using community-made scripts.</p>
+            <div class="download-button">
+                <a href="https://windhawk.net" target="_blank" rel="noopener noreferrer" class="button">Download Windhawk Now</a>
+            </div>
+        </section>
+
+        <section id="what-is-windhawk">
+            <h2>🧩 What is Windhawk?</h2>
+            <p>Windhawk is an innovative Windows modding framework designed to provide unparalleled customization capabilities. Unlike traditional methods that often involve risky system file modifications, Windhawk operates by injecting small, independent "mods" (short for modifications) into memory. This approach ensures that your system files remain untouched, making all changes live, reversible, and non-destructive.</p>
+            <p>Developed by Ramon Unch, renowned for the highly successful 7+ Taskbar Tweaker, Windhawk builds upon a foundation of deep Windows understanding and a commitment to user-friendly customization.</p>
+        </section>
+
+        <section id="what-can-it-do">
+            <h2>🔧 What Can Windhawk Do?</h2>
+            <p>Windhawk enables a vast array of modifications to various Windows components, with a primary focus on <code>explorer.exe</code> (which controls File Explorer, the taskbar, and many other UI elements). Here's a breakdown of its capabilities:</p>
+
+            <h3>🖥️ Taskbar Tweaks</h3>
+            <ul>
+                <li>Change the appearance of the taskbar (e.g., classic look, smaller size, custom transparency).</li>
+                <li>Bring back classic taskbar styles reminiscent of Windows 7 or 10.</li>
+                <li>Modify tray icon behavior (e.g., always show hidden icons, custom spacing).</li>
+                <li>Control grouping and combining of taskbar items for a cleaner look.</li>
+                <li>Reposition the system clock, notification icons, or other taskbar elements.</li>
+                <li>Add custom functionality to taskbar elements.</li>
+            </ul>
+
+            <h3>📁 File Explorer Mods</h3>
+            <ul>
+                <li>Add extra options to the right-click context menu (e.g., "Copy Path", "Open with Code Editor").</li>
+                <li>Hide or rearrange ribbon UI elements in File Explorer for a minimalist view.</li>
+                <li>Change how folders or drives are displayed (e.g., default view, custom icons).</li>
+                <li>Modify address bar or navigation pane behavior.</li>
+                <li>Enhance file management workflows with custom actions.</li>
+            </ul>
+
+            <h3>💡 UI and UX Customization</h3>
+            <ul>
+                <li>Force dark mode in applications that don’t natively support it, ensuring consistent theming.</li>
+                <li>Change the behavior or appearance of title bars, scrollbars, or window borders.</li>
+                <li>Tweak animations or transitions in system UI for a smoother or snappier feel.</li>
+                <li>Modify system fonts, colors, and iconography.</li>
+            </ul>
+
+            <h3>⌨️ Keyboard/Mouse Enhancements</h3>
+            <ul>
+                <li>Remap keys globally or only within specific applications (e.g., reassign Caps Lock to Ctrl).</li>
+                <li>Add new mouse gestures or shortcuts for faster navigation.</li>
+                <li>Make the scroll wheel behave differently per application (e.g., accelerate scrolling).</li>
+                <li>Create custom hotkeys for system functions or mod actions.</li>
+            </ul>
+
+            <h3>🛠️ System Behavior</h3>
+            <ul>
+                <li>Change default application handlers for specific file types.</li>
+                <li>Disable annoying system notifications, sounds, or pop-ups.</li>
+                <li>Customize Alt+Tab behavior (e.g., classic view, different preview sizes) or snap assist logic.</li>
+                <li>Fine-tune system responsiveness and performance.</li>
+            </ul>
+        </section>
+
+        <section id="how-it-works">
+            <h2>🧙‍♂️ How It Works</h2>
+            <p>Getting started with Windhawk is straightforward, and its underlying mechanism prioritizes safety and flexibility.</p>
+            <ol>
+                <li>
+                    <strong>Download & Install Windhawk:</strong>
+                    <p>Obtain the official Windhawk application directly from its trusted source:</p>
+                    <p><a href="https://windhawk.net" target="_blank" rel="noopener noreferrer">https://windhawk.net</a></p>
+                    <p>The installation process is quick and simple, integrating Windhawk seamlessly into your system.</p>
+                </li>
+                <li>
+                    <strong>Browse & Install Mods:</strong>
+                    <p>Windhawk features an intuitive internal mod browser. Once installed, you can:</p>
+                    <ul>
+                        <li>Search for a wide variety of community-made mods catering to different customization needs.</li>
+                        <li>View the source code and detailed descriptions of each mod, ensuring transparency.</li>
+                        <li>Install or uninstall mods with a single click directly from the application.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Load Mods into Memory:</strong>
+                    <p>This is where Windhawk's non-destructive nature shines. Mods are injected live into the target process (e.g., <code>explorer.exe</code>). There's no need for system reboots or permanent file changes. You can enable or disable mods on the fly, and they will take effect immediately. Mods are designed to load automatically when their target process starts, ensuring your customizations are active upon login.</p>
+                </li>
+                <li>
+                    <strong>Write Your Own Mods (Optional, for Developers):</strong>
+                    <p>For users comfortable with programming, particularly C++, Windhawk offers a robust Software Development Kit (SDK). This allows you to write your own custom mods, providing hooks and APIs to safely inject code into Windows processes. This opens up endless possibilities for tailored customizations.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section id="key-features">
+            <h2>⚙️ Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>🧼 Non-Destructive</h3>
+                    <p>Windhawk never patches or modifies your core system files. All changes are injected live into memory, ensuring your Windows installation remains pristine and untouched. This makes Windhawk incredibly safe and reliable.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🔄 Dynamic Loading</h3>
+                    <p>Mods load and unload in real-time, eliminating the need for system restarts. You can enable, disable, or modify mods instantly and see the effects without interrupting your workflow.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📚 Mod Library</h3>
+                    <p>Access a constantly growing library of dozens of high-quality community-developed mods directly within the Windhawk application. Discover new ways to enhance your Windows experience with ease.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🛡️ Safe & Open</h3>
+                    <p>Transparency is a core principle. The Windhawk application itself is open source, and every mod available through the official library shows its full source code. This allows users to inspect what a mod does before installing it, fostering trust and security.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>👨‍💻 Developer Friendly</h3>
+                    <p>For advanced users and developers, Windhawk provides a comprehensive C++ SDK, live debugging tools, and clear documentation. This empowers you to build, test, and distribute your own custom mods.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases">
+            <h2>🧠 Use Cases</h2>
+            <p>Windhawk's flexibility makes it suitable for a wide range of users and scenarios:</p>
+            <ul>
+                <li><strong>Revive Classic UI Elements:</strong> Bring back beloved Windows UI features that have been removed or altered in newer Windows versions (e.g., classic taskbar in Windows 11).</li>
+                <li><strong>Add New Power-User Features:</strong> Implement functionalities that Microsoft didn't include but would significantly improve productivity (e.g., advanced context menu options, custom hotkeys).</li>
+                <li><strong>Improve Accessibility & Ergonomics:</strong> Customize input methods (keyboard, mouse) to better suit individual needs or physical comfort.</li>
+                <li><strong>Fix Inconsistencies & Annoyances:</strong> Address minor UI glitches, awkward behaviors, or persistent annoyances within the Windows operating system.</li>
+                <li><strong>Personalize Your Experience:</strong> Tailor the look and feel of Windows to truly reflect your preferences and workflow.</li>
+                <li><strong>Developer Testing & Experimentation:</strong> Rapidly prototype and test UI/UX changes or system behavior modifications without affecting system integrity.</li>
+            </ul>
+        </section>
+
+        <section id="example-mods">
+            <h2>🧩 Example Mods You Can Try</h2>
+            <p>Here are just a few examples of popular and impactful mods available through Windhawk:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mod Name</th>
+                        <th>What It Does</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Classic Taskbar</strong></td>
+                        <td>Transforms the Windows 11 taskbar to resemble the look and feel of Windows 10 or 7, including icon alignment and grouping options.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fix Alt+Tab</strong></td>
+                        <td>Restores the classic Alt+Tab switching experience, often preferred for its clear previews and straightforward navigation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taskbar Clock Customizer</strong></td>
+                        <td>Provides extensive options to change the format, font, size, and position of the system clock on your taskbar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Middle-click to Close</strong></td>
+                        <td>Enables quick closure of applications by simply middle-clicking their icon on the taskbar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Folder Background Color</strong></td>
+                        <td>Lets you customize the background colors of folders in File Explorer, allowing for visual organization or personalization.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Disable Windows 11 Context Menu</strong></td>
+                        <td>Reverts the right-click context menu in Windows 11 to the older, more comprehensive Windows 10 style.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>No Taskbar Corner Icons</strong></td>
+                        <td>Hides icons in the taskbar corner (like Wi-Fi, battery, sound) for a cleaner, minimalist look.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="important-notes">
+            <h2>🛑 Things to Keep in Mind</h2>
+            <p>While Windhawk is designed with safety in mind, it's important to be aware of the following:</p>
+            <ul>
+                <li><strong>Mod Power:</strong> Windhawk mods are powerful tools that can deeply interact with Windows processes. Always use trusted mods and, if possible, review the source code before installation to understand their functionality.</li>
+                <li><strong>Potential for Issues:</strong> Although Windhawk doesn't permanently modify Windows files, poorly written or incompatible mods can potentially cause temporary bugs, unexpected behavior, or even application crashes. If an issue arises, disabling or uninstalling the problematic mod usually resolves it immediately.</li>
+                <li><strong>Windows Update Compatibility:</strong> Major Windows Updates can sometimes introduce changes to internal system structures that a mod targets. This might break the compatibility of certain mods, especially those that interact closely with <code>explorer.exe</code> internals. The Windhawk community and developers usually work quickly to update affected mods.</li>
+                <li><strong>Target Audience:</strong> Windhawk is most beneficial for power users, enthusiasts, and developers who are comfortable with the concept of system modding and are looking for advanced customization options beyond standard Windows settings.</li>
+            </ul>
+        </section>
+
+        <section id="learn-more">
+            <h2>🔗 Learn More</h2>
+            <p>Dive deeper into the Windhawk ecosystem and join the community:</p>
+            <ul>
+                <li><strong>🌐 Official Website:</strong> <a href="https://windhawk.net" target="_blank" rel="noopener noreferrer">https://windhawk.net</a> - The primary source for downloads, documentation, and the mod library.</li>
+                <li><strong>📦 GitHub Repository:</strong> <a href="https://github.com/ramensoftware/windhawk" target="_blank" rel="noopener noreferrer">https://github.com/ramensoftware/windhawk</a> - Explore the source code, contribute, or report issues.</li>
+                <li><strong>💬 Community Support:</strong>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/windhawk/" target="_blank" rel="noopener noreferrer">Reddit (r/windhawk)</a> - A good place for discussions, asking questions, and sharing tips.</li>
+                        <li>GitHub Issues - For technical support, bug reports, and feature requests directly to the developers.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Windhawk. All rights reserved. Windhawk is developed by Ramon Unch.</p>
+        </div>
+    </footer>
+</body>
+</html>

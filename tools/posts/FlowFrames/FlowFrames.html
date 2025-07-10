@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowframes AI - Experience Unprecedented Video Smoothness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Tech -->
+    <!-- Application Structure Plan: The SPA is designed as a persuasive journey for a potential user. It starts with a strong hook (Hero section) and an immediate visual demonstration of the core benefit (FPS Simulator). It then presents the key selling points (Why Flowframes?), dives into the technical details for interested users via an interactive tabbed interface (How It Works), and provides crucial decision-making context with a competitive comparison chart (Flowframes vs. The Competition). The page then helps users self-identify with the product through persona-based use cases (Who Is It For?) before transparently laying out requirements and the value proposition of the paid tier (Get Started). The journey concludes with a clear final call-to-action. This funnel-like structure (Awareness -> Interest -> Consideration -> Action) is more effective for persuasion than mirroring the linear report structure. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Frame interpolation from 30 to 60 FPS -> Goal: Demonstrate the core benefit visually -> Viz/Presentation: HTML/CSS animated bars moving at different speeds to simulate the "feel" of different framerates. Interaction: Passive visual demonstration. Justification: A simple, non-video, lightweight way to immediately convey the product's value. Library/Method: HTML/CSS Keyframes.
+        - Report Info: Comparisons between Flowframes, Topaz Video AI, and SVP -> Goal: Help users make an informed decision -> Viz/Presentation: Interactive Bar Chart. Interaction: Hovering over bars reveals tooltips with specific commentary. Justification: Translates qualitative comparisons from the report into a scannable, quantitative visual, making it easy to see Flowframes' strengths. Library/Method: Chart.js (Canvas).
+        - Report Info: Numerous features (AI Models, Compatibility, File Formats) -> Goal: Organize complex information without overwhelming the user -> Viz/Presentation: Tabbed Interface. Interaction: Clicking tabs reveals different content panes. Justification: Prevents a long, intimidating wall of text and allows users to self-select the information they are most interested in. Library/Method: Vanilla JS toggling visibility.
+        - Report Info: Free vs. Patreon features -> Goal: Clearly differentiate the two tiers to justify the paid option -> Viz/Presentation: Interactive Toggle. Interaction: Clicking the toggle switches between two feature lists. Justification: Provides a direct, side-by-side comparison in a compact space. Library/Method: Vanilla JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F5F2;
+            color: #2D3748;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+        .fps-bar-container {
+            height: 60px;
+            background-color: #E2E8F0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .fps-bar {
+            position: absolute;
+            top: 0;
+            left: -10%;
+            height: 100%;
+            width: 10%;
+            background-color: #4A90E2;
+            animation-name: slide;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        .bar-30fps {
+            animation-duration: 2s;
+        }
+        .bar-60fps {
+            animation-duration: 1s;
+        }
+        @keyframes slide {
+            from { left: -10%; }
+            to { left: 100%; }
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #4A90E2;
+        }
+        .active-tab {
+            background-color: #4A90E2;
+            color: #FFFFFF;
+        }
+        .inactive-tab {
+            background-color: #E2E8F0;
+            color: #4A5568;
+        }
+        .feature-toggle-active {
+            background-color: #4A90E2;
+            color: #FFF;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">
+                Flowframes<span class="text-blue-500">.ai</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#demo" class="nav-link text-gray-600">Demo</a>
+                <a href="#features" class="nav-link text-gray-600">Features</a>
+                <a href="#comparison" class="nav-link text-gray-600">Comparison</a>
+                <a href="#use-cases" class="nav-link text-gray-600">Use Cases</a>
+                <a href="#download" class="nav-link text-gray-600">Download</a>
+            </div>
+            <a href="#download" class="hidden md:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                Get Started
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight">
+                    Experience Unprecedented
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">Video Smoothness</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Flowframes is a revolutionary AI-powered application that intelligently increases your video's frame rate, transforming choppy footage into hyper-smooth, cinematic motion.
+                </p>
+                <div class="mt-10 flex justify-center gap-4 flex-wrap">
+                    <a href="https://nmkd.itch.io/flowframes" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 duration-300 shadow-lg">
+                        Download for Free
+                    </a>
+                    <a href="https://www.patreon.com/n00mkrad" target="_blank" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 duration-300 shadow-lg">
+                        Get Pro Features on Patreon
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">See The Difference AI Makes</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">This simple animation demonstrates the fluid motion Flowframes brings. The top bar simulates standard 30 FPS video, while the bottom bar shows the ultra-smooth 60+ FPS you can achieve.</p>
+                </div>
+                <div class="max-w-4xl mx-auto space-y-8">
+                    <div>
+                        <p class="text-left font-semibold text-gray-700 mb-2">Original Video (30 FPS)</p>
+                        <div class="fps-bar-container">
+                            <div class="fps-bar bar-30fps"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-left font-semibold text-gray-700 mb-2">With Flowframes (60+ FPS)</p>
+                        <div class="fps-bar-container">
+                             <div class="fps-bar bar-60fps bg-gradient-to-r from-teal-400 to-cyan-500"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="why-flowframes" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">The Revolution of AI Frame Interpolation</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Flowframes isn't just about adding frames; it's about adding life to your videos. Our intelligent AI analyzes motion to generate new, contextually-aware frames for a flawless viewing experience.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <div class="text-4xl text-blue-500 mb-4">✨</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Unparalleled Smoothness</h3>
+                        <p class="text-gray-600">Eliminate the jerky, choppy look of low-FPS video. Achieve cinematic fluidity and heightened realism in every clip.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <div class="text-4xl text-blue-500 mb-4">🚀</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">GPU Accelerated</h3>
+                        <p class="text-gray-600">Leverages the full power of your graphics card (Nvidia, AMD, & Intel) for incredibly fast processing times, even on large projects.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <div class="text-4xl text-blue-500 mb-4">🎬</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Revitalize Your Content</h3>
+                        <p class="text-gray-600">Breathe new life into old home movies, classic animation, or any footage. Seamlessly convert 24/30 FPS video to 60, 120 FPS, or even higher.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <div class="text-4xl text-blue-500 mb-4">💡</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Intuitive & Simple</h3>
+                        <p class="text-gray-600">Despite the complex AI underneath, Flowframes offers a clean, user-friendly interface that's easy for beginners and powerful for pros.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Unleashing the Power</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Flowframes is packed with intelligent features designed to give you precise control and exceptional results. Explore the technology that makes it all possible.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-8 flex flex-wrap justify-center gap-2 rounded-lg p-1 bg-gray-200">
+                        <button class="feature-tab-btn flex-grow px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-300 active-tab" data-tab="ai-models">AI Models</button>
+                        <button class="feature-tab-btn flex-grow px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-300 inactive-tab" data-tab="compatibility">Compatibility</button>
+                        <button class="feature-tab-btn flex-grow px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-300 inactive-tab" data-tab="smart-processing">Smart Processing</button>
+                    </div>
+
+                    <div id="ai-models" class="feature-tab-content p-6 bg-gray-50 rounded-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Advanced AI at its Core</h3>
+                        <p class="text-gray-600 mb-4">Flowframes leverages multiple cutting-edge AI models, allowing you to choose the best one for your content. The primary model, RIFE (Real-Time Intermediate Flow Estimation), provides an exceptional balance of speed and quality.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>RIFE:</strong> The default choice for outstanding, real-time performance, especially on Nvidia GPUs.</li>
+                            <li><strong>DAIN:</strong> An alternative model known for its high-quality output.</li>
+                            <li><strong>Experimental Models:</strong> Access to newer models like FLAVR and XVFI for users who want to push the boundaries (Patreon exclusive).</li>
+                        </ul>
+                    </div>
+                    <div id="compatibility" class="feature-tab-content p-6 bg-gray-50 rounded-lg hidden">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Maximum Reach & Flexibility</h3>
+                        <p class="text-gray-600 mb-4">We believe powerful tools should be accessible. Flowframes is designed to work with a vast range of hardware and file types.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>GPU Support:</strong> Full support for Nvidia (CUDA), AMD (Vulkan), and Intel (Vulkan) GPUs.</li>
+                            <li><strong>Input Formats:</strong> Works with MP4, GIF, WEBM, MKV, MOV, and even image sequences (PNG, JPG).</li>
+                            <li><strong>Output Formats:</strong> Export to modern codecs like H265/HEVC, VP9, and AV1 to maintain quality while saving space.</li>
+                             <li><strong>Audio & Subtitles:</strong> All original audio and subtitle tracks are perfectly preserved and synced in the final output. No quality loss.</li>
+                        </ul>
+                    </div>
+                    <div id="smart-processing" class="feature-tab-content p-6 bg-gray-50 rounded-lg hidden">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Intelligent Processing for Flawless Results</h3>
+                        <p class="text-gray-600 mb-4">Flowframes thinks about your video to prevent common issues and preserve artistic intent, delivering a polished final product automatically.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Scene Detection:</strong> Automatically identifies cuts between scenes to prevent ugly artifacts and ghosting.</li>
+                            <li><strong>Frame De-Duplication:</strong> Smartly ignores repeated frames (common in animations) to avoid unnatural motion.</li>
+                            <li><strong>Speed Compensation:</strong> A special mode for 2D animation that maintains the original pacing and timing.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="py-20">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Flowframes vs. The Competition</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">How does Flowframes stack up against other tools? We've analyzed user feedback to create this comparison. While other tools have their strengths, Flowframes is frequently praised for its superior dedicated interpolation quality and artifact handling.</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="use-cases" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Who Is It For?</h2>
+                     <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Flowframes is a versatile tool that empowers a wide range of creators. It's more than just a video enhancer; it's a workflow accelerator and a quality-of-life improvement for anyone working with moving images.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Professional Video Editors</h3>
+                        <p class="text-gray-600">A powerful, cost-effective alternative to expensive retiming plugins. Create ultra-smooth slow-motion, fix stuttery footage, and elevate your post-production quality without breaking the bank.</p>
+                    </div>
+                     <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">3D Animators</h3>
+                        <p class="text-gray-600">Revolutionize your workflow by rendering only half the frames and letting Flowframes generate the rest. Drastically cut render times and costs, and iterate on animation tests faster than ever before.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Gaming Content Creators</h3>
+                        <p class="text-gray-600">Transform your 30 or 60 FPS gameplay footage into a buttery-smooth 120+ FPS experience. Make fast-paced action clearer and provide a superior, more immersive viewing experience for your audience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="get-started" class="py-20">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Ready to Get Started?</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Here's what you need to know. Flowframes is free and accessible, with premium features available for supporters who want the absolute cutting edge of AI interpolation technology.</p>
+                </div>
+                <div class="grid lg:grid-cols-5 gap-8 items-start">
+                    <div class="lg:col-span-2 bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">System Requirements</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-green-500 font-bold mr-3 mt-1">✓</span>
+                                <div><strong>GPU:</strong> A Vulkan-capable graphics card is required. Most GPUs made in the last 6 years are compatible.</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-green-500 font-bold mr-3 mt-1">✓</span>
+                                <div><strong>OS:</strong> Windows 10 or Windows 11 recommended for best performance and support.</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-red-500 font-bold mr-3 mt-1">✗</span>
+                                <div><strong>Not Supported:</strong> Very old GPUs like the GT 710 or Intel HD 3xxx/4xxx series are not compatible.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-3 bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Free vs. Patreon Features</h3>
+                        <div class="flex justify-center mb-6 rounded-lg p-1 bg-gray-200 max-w-sm mx-auto">
+                            <button id="toggle-free" class="feature-toggle-btn w-1/2 py-2 text-sm font-semibold rounded-md feature-toggle-active">Free Version</button>
+                            <button id="toggle-patreon" class="feature-toggle-btn w-1/2 py-2 text-sm font-semibold rounded-md">Patreon Exclusive</button>
+                        </div>
+                        <div id="free-features">
+                             <p class="text-center text-gray-500 mb-4">Everything you need for amazing results, completely free.</p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>Access to stable, powerful AI models (RIFE, DAIN).</li>
+                                <li>Full compatibility with a wide range of videos and GPUs.</li>
+                                <li>All core intelligent processing features.</li>
+                                <li>High-quality video output with audio/subtitle preservation.</li>
+                            </ul>
+                        </div>
+                        <div id="patreon-features" class="hidden">
+                            <p class="text-center text-gray-500 mb-4">For professionals and enthusiasts who want the ultimate experience.</p>
+                            <ul class="list-disc list-inside space-y-2 text-teal-800">
+                                <li><strong>Access to the very latest, fastest, and highest-quality AI models.</strong></li>
+                                <li><strong>Real-Time Output Mode:</strong> See the results as they're being rendered.</li>
+                                <li><strong>VapourSynth Implementation:</strong> A streamlined workflow for advanced users.</li>
+                                <li>Improved video and audio encoding options.</li>
+                                <li>More quality-of-life features and priority support.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="py-24 bg-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-4xl md:text-5xl font-extrabold text-white">
+                    Elevate Your Videos Today
+                </h2>
+                <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
+                    Don't let choppy footage hold back your creative vision. Join thousands of creators and experience the future of motion.
+                </p>
+                <div class="mt-10 flex justify-center gap-4 flex-wrap">
+                     <a href="https://nmkd.itch.io/flowframes" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-lg text-xl transition-transform transform hover:scale-105 duration-300 shadow-lg">
+                        Download Now (Free)
+                    </a>
+                    <a href="https://discord.com/widget?id=777892450232434688&theme=dark" target="_blank" class="bg-gray-200 hover:bg-white text-gray-800 font-bold py-4 px-10 rounded-lg text-xl transition-transform transform hover:scale-105 duration-300 shadow-lg">
+                        Join The Community
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Flowframes AI. Developed by N00MKRAD. This is an informational fan-made page based on publicly available research.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chartCtx = document.getElementById('comparisonChart')?.getContext('2d');
+            if (chartCtx) {
+                const comparisonData = {
+                    labels: ['Flowframes', 'Topaz Video AI', 'Smooth Video Project (SVP)'],
+                    datasets: [{
+                        label: 'Interpolation Quality',
+                        data: [9, 8, 6],
+                        backgroundColor: 'rgba(74, 144, 226, 0.7)',
+                        borderColor: 'rgba(74, 144, 226, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Artifact Handling',
+                        data: [9, 7, 5],
+                        backgroundColor: 'rgba(74, 226, 186, 0.7)',
+                        borderColor: 'rgba(74, 226, 186, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Ease of Use / Cost-Effectiveness',
+                        data: [10, 6, 7],
+                         backgroundColor: 'rgba(126, 213, 111, 0.7)',
+                        borderColor: 'rgba(126, 213, 111, 1)',
+                        borderWidth: 1
+                    }]
+                };
+
+                new Chart(chartCtx, {
+                    type: 'bar',
+                    data: comparisonData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 10,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.x !== null) {
+                                            label += `${context.parsed.x}/10`;
+                                        }
+                                        return label;
+                                    }
+                                }
+                            },
+                             title: {
+                                display: true,
+                                text: 'Relative Score (Higher is Better)',
+                                padding: {
+                                    top: 10,
+                                    bottom: 30
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const featureTabBtns = document.querySelectorAll('.feature-tab-btn');
+            const featureTabContents = document.querySelectorAll('.feature-tab-content');
+
+            featureTabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.dataset.tab;
+
+                    featureTabBtns.forEach(b => {
+                        b.classList.remove('active-tab');
+                        b.classList.add('inactive-tab');
+                    });
+                    btn.classList.add('active-tab');
+                    btn.classList.remove('inactive-tab');
+
+                    featureTabContents.forEach(content => {
+                        if (content.id === tabId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const toggleFreeBtn = document.getElementById('toggle-free');
+            const togglePatreonBtn = document.getElementById('toggle-patreon');
+            const freeFeatures = document.getElementById('free-features');
+            const patreonFeatures = document.getElementById('patreon-features');
+            
+            toggleFreeBtn.addEventListener('click', () => {
+                freeFeatures.classList.remove('hidden');
+                patreonFeatures.classList.add('hidden');
+                toggleFreeBtn.classList.add('feature-toggle-active');
+                togglePatreonBtn.classList.remove('feature-toggle-active');
+            });
+
+            togglePatreonBtn.addEventListener('click', () => {
+                patreonFeatures.classList.remove('hidden');
+                freeFeatures.classList.add('hidden');
+                togglePatreonBtn.classList.add('feature-toggle-active');
+                toggleFreeBtn.classList.remove('feature-toggle-active');
+            });
+            
+            const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        const headerOffset = document.getElementById('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

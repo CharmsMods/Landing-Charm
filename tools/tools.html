@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charm?'s Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Cursor styles */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #000;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.1s ease, background-color 0.3s ease;
+            left: 0;
+            top: 0;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .cursor-halo {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(147, 112, 219, 0.7);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9998;
+            transition: all 0.3s ease;
+            transition-property: transform, border-color, width, height;
+            will-change: transform, border-color;
+            left: 0;
+            top: 0;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        body, body * {
+            cursor: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot" style="left: 0; top: 0;"></div>
+    <div class="cursor-halo" style="left: 0; top: 0;"></div>
+
+    <main>
+        <section id="tools" class="tools-section light-section content-fade-in">
+            <div class="container">
+                <h2>My Favorite Tools</h2>
+                <p>Here you'll find a collection of helpful and useful tools that I use all the time to speed things up or make tasks easier. Click on any card to learn more about a specific tool! (Not Created By Me)</p>
+                
+                <div class="tool-grid">
+                    <!-- UPSCAYL: Copy this block to add new tools -->
+                    <a href="posts/Upscayl/Upscayl.html" class="tool-card">
+                        <img src="posts/Upscayl/Upscayl.png" class="tool-image">
+                        <div class="tool-content">
+                            <h3>Upscayl</h3>
+                            <p>A Powerful Image Upscaler that can run locally and transform a mess in to a great picture!</p>
+                        </div>
+                    </a>
+
+                    <!-- FLOWFRAMES: Another tool entry -->
+                    <a href="posts/FlowFrames/FlowFrames.html" class="tool-card">
+                        <img src="posts/FlowFrames/FlowFrames.png" alt="Placeholder image for Tool 2" class="tool-image">
+                        <div class="tool-content">
+                            <h3>FlowFrames</h3>
+                            <p>The best free video fps interpolator</p>
+                        </div>
+                    </a>
+
+                    <!-- AI-Battle: Yet another tool entry -->
+                    <a href="posts/AI Battle/AI-Battle.html" class="tool-card">
+                        <img src="posts/AI Battle/AI-Battle.png" alt="Placeholder image for Tool 3" class="tool-image">
+                        <div class="tool-content">
+                            <h3>The AI Coding Battle</h3>
+                            <p>The Showdown between ChatGPT, Claude, and Gemini</p>
+                        </div>
+                    </a>
+
+			<!-- WindHawk: Yet another tool entry -->
+                    <a href="posts/WindHawk/WindHawk.html" class="tool-card">
+                        <img src="posts/WindHawk/WindHawk.png" alt="Placeholder image for Tool 3" class="tool-image">
+                        <div class="tool-content">
+                            <h3>WindHawk</h3>
+                            <p>One of the best Windows Customization Tools</p>
+                        </div>
+                    </a>
+
+
+
+                    <!-- Add more tool cards by copying and pasting the above structure -->
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Charm?. All rights reserved. Made with ❤️ and code.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <div class="cursor-dot"></div>
+    <div class="cursor-halo"></div>
+</body>
+</html>
