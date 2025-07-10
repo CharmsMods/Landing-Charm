@@ -520,20 +520,50 @@ html {
     width: 90%;
     height: 80vh;
     padding: 4rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
     border-radius: 20px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     z-index: 1;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    z-index: 1;
+    border: 1px solid transparent;
+    box-shadow: none;
     box-sizing: border-box;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.95);
-    animation: glassEntrance 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Tools Section Hover */
+.tools-page-section .tool-button:hover ~ .glassmorphism-rectangle,
+.tools-page-section .tool-button:hover + .tools-section .glassmorphism-rectangle {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    opacity: 1;
+}
+
+/* Gallery Section Hover */
+.gallery-page-section .creation-button:hover ~ .glassmorphism-rectangle,
+.gallery-page-section .creation-button:hover + .gallery-section .glassmorphism-rectangle {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    opacity: 1;
+}
+
+/* Socials Section Hover */
+.socials-page-section .socials-links a:hover ~ .glassmorphism-rectangle,
+.socials-page-section .socials-links a:hover + .socials-section .glassmorphism-rectangle {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    opacity: 1;
 }
 
 @keyframes glassEntrance {
@@ -806,7 +836,7 @@ body.hide-content .secondary-text {
 
 /* Tools Section Styles */
 .tools-page-section {
-    background-image: url('tools-bg.jpg');
+    background-image: url('toolsbackgroundimage.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -814,8 +844,8 @@ body.hide-content .secondary-text {
 }
 
 .tools-section {
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
+    background: transparent;
+    backdrop-filter: none;
     border-radius: 20px;
     padding: 2.5rem;
     max-width: 800px;
@@ -824,14 +854,25 @@ body.hide-content .secondary-text {
     text-align: center;
     position: relative;
     z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.tools-section:hover {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.tools-section:hover h2 {
+    color: #fff;
 }
 
 .tools-section h2 {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    color: #fff;
+    color: #000;
+    transition: color 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
