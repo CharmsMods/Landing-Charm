@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el.id === 'inception' || el.id === 'lisa061') {
             const originalText = el.textContent;
             el.addEventListener('mouseenter', () => {
-                el.textContent = 'EVANS GF';
+                el.textContent = 'LUCKYS GF';
                 el.style.color = 'crimson';
                 el.style.textShadow = '0 0 10px crimson';
                 el.style.transform = 'scale(1.2)';
