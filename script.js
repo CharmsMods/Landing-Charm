@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setBackground('.main-page-section', 'top-background.png');
-    setBackground('.socials-page-section', 'bottom-background.png');
+    setBackground('.socials-page-section', 'bottom-background.webp');
     setBackground('.gallery-page-section', 'gallery-background.png');
 
     nameInput.addEventListener('focus', () => {

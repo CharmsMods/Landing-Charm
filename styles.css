@@ -101,37 +101,7 @@ html {
     position: relative;
 }
 
-/* Add gradient fades between sections */
-.main-page-section::after,
-.gallery-page-section::after,
-.socials-page-section::before,
-.gallery-page-section::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 150px;
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Bottom fade for all sections except last */
-.main-page-section::after,
-.gallery-page-section::after {
-    bottom: 0;
-    background: linear-gradient(to bottom, 
-        transparent 0%, 
-        rgba(0, 0, 0, 0.8) 100%);
-}
-
-/* Top fade for all sections except first */
-.socials-page-section::before,
-.gallery-page-section::before {
-    top: 0;
-    background: linear-gradient(to top, 
-        transparent 0%, 
-        rgba(0, 0, 0, 0.8) 100%);
-}
+/* Removed gradient fades between sections */
 
 /* Removed .impact-page-section styles */
 
@@ -533,9 +503,8 @@ html {
     transition: all 0.3s ease;
 }
 
-/* Tools Section Hover */
-.tools-page-section .tool-button:hover ~ .glassmorphism-rectangle,
-.tools-page-section .tool-button:hover + .tools-section .glassmorphism-rectangle {
+/* Show rectangle when section is hovered */
+.section-container:hover > .glassmorphism-rectangle {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
@@ -544,20 +513,13 @@ html {
     opacity: 1;
 }
 
-/* Gallery Section Hover */
-.gallery-page-section .creation-button:hover ~ .glassmorphism-rectangle,
-.gallery-page-section .creation-button:hover + .gallery-section .glassmorphism-rectangle {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
-    opacity: 1;
-}
-
-/* Socials Section Hover */
-.socials-page-section .socials-links a:hover ~ .glassmorphism-rectangle,
-.socials-page-section .socials-links a:hover + .socials-section .glassmorphism-rectangle {
+/* Show rectangle when any button inside the section is hovered */
+.section-container:hover .tool-button:hover ~ .glassmorphism-rectangle,
+.section-container:hover .creation-button:hover ~ .glassmorphism-rectangle,
+.section-container:hover .socials-links a:hover ~ .glassmorphism-rectangle,
+.tool-button:hover ~ .glassmorphism-rectangle,
+.creation-button:hover ~ .glassmorphism-rectangle,
+.socials-links a:hover ~ .glassmorphism-rectangle {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
@@ -836,7 +798,7 @@ body.hide-content .secondary-text {
 
 /* Tools Section Styles */
 .tools-page-section {
-    background-image: url('toolsbackgroundimage.png');
+    background-image: url('toolsbackgroundimage.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
