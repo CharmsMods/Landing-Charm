@@ -796,6 +796,101 @@ body.hide-content .secondary-text {
     height: 100%;
 }
 
+/* Discord Themes Section */
+.discord-themes-section {
+    background-image: url('discordbg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.discord-themes-content {
+    background: transparent;
+    backdrop-filter: none;
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.discord-themes-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #fff;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+.discord-themes-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #7289da, #99aab5);
+    border-radius: 3px;
+}
+
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.theme-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    background: rgba(114, 137, 218, 0.1);
+    border: 1px solid rgba(114, 137, 218, 0.3);
+    border-radius: 12px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.theme-button i {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    color: #7289da;
+    transition: all 0.3s ease;
+}
+
+.theme-button span {
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.theme-button:hover {
+    transform: translateY(-5px);
+    background: rgba(114, 137, 218, 0.2);
+    border-color: rgba(114, 137, 218, 0.5);
+    box-shadow: 0 8px 20px rgba(114, 137, 218, 0.2);
+}
+
+.theme-button:hover i {
+    color: #99aab5;
+    transform: scale(1.1);
+}
+
 /* Tools Section Styles */
 .tools-page-section {
     background-image: url('toolsbackgroundimage.webp');
