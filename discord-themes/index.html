@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Themes - Charms</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .theme-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .theme-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .theme-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        .copy-button {
+            background: #5865F2;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .copy-button:hover {
+            background: #4752c4;
+        }
+        .copy-button.copied {
+            background: #43b581;
+        }
+        .code-container {
+            background: #2f3136;
+            border-radius: 8px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            color: #dcddde;
+            white-space: pre-wrap;
+            word-break: break-all;
+            position: relative;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #5865F2;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        .back-button:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen p-4">
+    <div class="max-w-4xl mx-auto py-8">
+        <a href="../mainpage.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Main
+        </a>
+        <h1 class="text-4xl font-bold mb-8 text-center">Discord Themes</h1>
+        
+        <div id="themes-container">
+            <!-- Themes will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Theme data - will be populated from the discordcss folder
+        const themes = [
+            { name: 'Smooth Harmony', file: 'Smooth-Harmony.txt' },
+            { name: 'Brown', file: 'brown.txt' },
+            { name: 'Material', file: 'material.txt' },
+            { name: 'Spotify', file: 'spotify.txt' }
+        ];
+
+        // Function to load theme content
+        async function loadThemeContent(theme) {
+            try {
+                const response = await fetch(`../discordcss/${theme.file}`);
+                if (!response.ok) throw new Error('Failed to load theme');
+                return await response.text();
+            } catch (error) {
+                console.error('Error loading theme:', error);
+                return '/* Error loading theme content */';
+            }
+        }
+
+        // Function to create theme box
+        async function createThemeBox(theme) {
+            const themeContent = await loadThemeContent(theme);
+            
+            const themeBox = document.createElement('div');
+            themeBox.className = 'theme-box';
+            
+            themeBox.innerHTML = `
+                <div class="theme-header">
+                    <div class="theme-name">${theme.name}</div>
+                    <button class="copy-button" data-theme="${theme.name}">
+                        <i class="far fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="code-container">
+                    <code>${escapeHtml(themeContent)}</code>
+                </div>
+            `;
+
+            return themeBox;
+        }
+
+        // Function to escape HTML
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Function to copy to clipboard
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard');
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('themes-container');
+            
+            // Create and append theme boxes
+            for (const theme of themes) {
+                const themeBox = await createThemeBox(theme);
+                container.appendChild(themeBox);
+            }
+
+            // Add click event listeners to copy buttons
+            document.querySelectorAll('.copy-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const themeContent = button.parentElement.nextElementSibling.textContent;
+                    copyToClipboard(themeContent, button);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
