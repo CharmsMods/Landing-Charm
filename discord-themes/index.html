@@ -56,21 +56,38 @@
             position: relative;
         }
         .back-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             margin-bottom: 20px;
-            color: #5865F2;
+            padding: 10px 20px;
+            background: rgba(88, 101, 242, 0.1);
+            color: #fff;
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
         .back-button:hover {
-            color: #fff;
+            background: rgba(88, 101, 242, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.2);
+            border-color: rgba(88, 101, 242, 0.5);
+        }
+        .back-button i {
+            transition: transform 0.3s ease;
+        }
+        .back-button:hover i {
+            transform: translateX(-3px);
         }
     </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-4">
     <div class="max-w-4xl mx-auto py-8">
-        <a href="../mainpage.html" class="back-button">
+        <a href="../mainpage.html#discord-themes" class="back-button">
             <i class="fas fa-arrow-left"></i> Back to Main
         </a>
         <h1 class="text-4xl font-bold mb-8 text-center">Discord Themes</h1>
